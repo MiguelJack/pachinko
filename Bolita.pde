@@ -9,7 +9,7 @@ class Bolita{
     fuerzaRevote = fuerzaRevoteP;
     radio = 10;
     BodyDef bodyDef = new BodyDef();
-    bodyDef.position = box2d.coordPixelsToWorld((width / 3) * 2, height);
+    bodyDef.position = box2d.coordPixelsToWorld((width / 3) * 2 - radio * 2, height);
     bodyDef.type = BodyType.DYNAMIC;
     body = box2d.createBody(bodyDef);
     

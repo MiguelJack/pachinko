@@ -6,12 +6,14 @@ import java.util.ListIterator;
 Box2DProcessing box2d;
 
 ArrayList<Bolita> bolitas;
+Maquina maquina;
 
 void setup(){
   fullScreen();
   bolitas = new ArrayList();
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
+  maquina = new Maquina();
 }
 
 void draw(){
@@ -22,6 +24,8 @@ void draw(){
   }
   
   box2d.step();
+  
+  maquina.display();
   
   for (Bolita b : bolitas){
     b.display();
