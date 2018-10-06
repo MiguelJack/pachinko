@@ -3,9 +3,11 @@ class Maquina{
   ArrayList<Pin> pines;
   
   float ancho;
+  int tipo;
 
-  Maquina(float anchoP){
+  Maquina(float anchoP, int tipoP){
     ancho = anchoP;
+    tipo = tipoP;
     
     puntos = new ArrayList();
     pines = new ArrayList();
@@ -54,18 +56,34 @@ class Maquina{
   
   void colocarPines(){
     ArrayList<Vec2> puntos = new ArrayList();
-    
-    //puntos.add(new Vec2(width / 3 + 100, 80));
-    //puntos.add(new Vec2(width / 3 + 250, 150));
-    
-    for(int i = 0; i < 50; i++){
-      float x = random((width - ancho) / 2 + 5, (width - ancho) / 2 + ancho - 35);
-      float y = random(120, height - 5);
-      puntos.add(new Vec2(x, y));
+   
+    if(tipo == 1){
+      puntos = pinesMaquina1();
     }
     
     for(Vec2 v : puntos){
        pines.add(new Pin(5, v.x, v.y));
     }
+  }
+  
+  ArrayList<Vec2> pinesMaquina1(){
+    ArrayList<Vec2> puntos = new ArrayList();
+    
+    int vuelta = 1;
+    float y = 120;
+    while(y < height / 2){
+      float x = ((width - ancho) / 2 + 20);
+      if (vuelta < 0){
+        x += 27; 
+      }
+      while(x < ((width - ancho) / 2 + ancho - 20)){
+        puntos.add(new Vec2(x, y));
+        x += 54;
+      }
+      y += 54;
+      vuelta *= -1;
+    }
+   
+    return puntos;
   }
 }

@@ -10,15 +10,19 @@ Maquina maquina;
 
 float radioBolitas = 10;
 float anchoMaquina;
+int tipoMaquina;
 
 void setup(){
   fullScreen();
-  anchoMaquina = width / 3;
   bolitas = new ArrayList();
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
-  maquina = new Maquina(anchoMaquina);
-  //bolitas.add(new Bolita(0.2, radioBolitas, (width / 3) * 2 - radioBolitas * 2, height)); 
+  
+  tipoMaquina = 1; //Esto se tiene que cambiar con un menu en un futuro
+  if(tipoMaquina == 1){
+    anchoMaquina = width / 2;
+  }
+  maquina = new Maquina(anchoMaquina, 1);
 }
 
 void draw(){
