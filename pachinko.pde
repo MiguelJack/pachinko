@@ -13,7 +13,7 @@ float anchoMaquina;
 
 void setup(){
   fullScreen();
-  anchoMaquina = width / 2;
+  anchoMaquina = width / 3;
   bolitas = new ArrayList();
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
@@ -39,7 +39,7 @@ void draw(){
   ListIterator<Bolita> pennywise = bolitas.listIterator();
   while(pennywise.hasNext()){
     Bolita b = pennywise.next();
-    if(b.salio()){
+    if(b.salio(anchoMaquina)){
       pennywise.remove();
     }
   }
