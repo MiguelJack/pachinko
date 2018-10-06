@@ -13,7 +13,12 @@ class Maquina{
     puntos.add(new Vec2(width / 3 + 100, 0));
     puntos.add(new Vec2(width / 3, 120));
     puntos.add(new Vec2(width / 3, height));
+    
+    puntos.add(new Vec2((width / 3) * 2 - 30, height));
+    puntos.add(new Vec2((width / 3) * 2 - 30, 150));
+    puntos.add(new Vec2((width / 3) * 2 - 30, height));
     puntos.add(new Vec2((width / 3) * 2, height));
+    
     puntos.add(new Vec2((width / 3) * 2, 120));
     puntos.add(new Vec2((width / 3) * 2 - 100, 0));
     puntos.add(new Vec2(width / 3 + 100, 0));

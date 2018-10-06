@@ -37,7 +37,7 @@ class Bolita{
     Vec2 posicion = box2d.getBodyPixelCoord(body);
     pushMatrix();
     translate(posicion.x, posicion.y);
-    fill(#EAEAEA);
+    fill(#646464);
     stroke(#B2B2B2);
     strokeWeight(2);
     ellipse(0, 0, radio * 2, radio * 2);

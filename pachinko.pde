@@ -23,7 +23,7 @@ void draw(){
   background(0);
   
   if(mousePressed){
-    bolitas.add(new Bolita(0.2, radioBolitas, (width / 3) * 2 - radioBolitas * 2, height)); 
+    bolitas.add(new Bolita(0.2, radioBolitas, (width / 3) * 2 - radioBolitas, height)); 
   }
   
   box2d.step();
