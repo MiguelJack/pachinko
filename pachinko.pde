@@ -8,19 +8,22 @@ Box2DProcessing box2d;
 ArrayList<Bolita> bolitas;
 Maquina maquina;
 
+float radioBolitas = 10;
+
 void setup(){
   fullScreen();
   bolitas = new ArrayList();
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   maquina = new Maquina();
+  //bolitas.add(new Bolita(0.2, radioBolitas, (width / 3) * 2 - radioBolitas * 2, height)); 
 }
 
 void draw(){
   background(0);
   
   if(mousePressed){
-    bolitas.add(new Bolita(0.2)); 
+    bolitas.add(new Bolita(0.2, radioBolitas, (width / 3) * 2 - radioBolitas * 2, height)); 
   }
   
   box2d.step();

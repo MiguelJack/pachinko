@@ -1,15 +1,13 @@
 class Bolita{
   Body body;
   float radio;
-  float x;
-  float y;
   float fuerzaRevote;
     
-  Bolita(float fuerzaRevoteP){
+  Bolita(float fuerzaRevoteP, float radioP, float x, float y){
     fuerzaRevote = fuerzaRevoteP;
-    radio = 10;
+    radio = radioP;
     BodyDef bodyDef = new BodyDef();
-    bodyDef.position = box2d.coordPixelsToWorld((width / 3) * 2 - radio * 2, height);
+    bodyDef.position = box2d.coordPixelsToWorld(x, y);
     bodyDef.type = BodyType.DYNAMIC;
     body = box2d.createBody(bodyDef);
     
@@ -39,7 +37,7 @@ class Bolita{
     Vec2 posicion = box2d.getBodyPixelCoord(body);
     pushMatrix();
     translate(posicion.x, posicion.y);
-    fill(#B4B4B4);
+    fill(#EAEAEA);
     stroke(#B2B2B2);
     strokeWeight(2);
     ellipse(0, 0, radio * 2, radio * 2);
