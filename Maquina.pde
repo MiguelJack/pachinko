@@ -4,6 +4,8 @@ class Maquina{
   
   float ancho;
   int tipo;
+  
+  Pico pico;
 
   Maquina(float anchoP, int tipoP){
     ancho = anchoP;
@@ -38,6 +40,8 @@ class Maquina{
     body.createFixture(chainShape, 1);
     
     colocarPines();
+    
+    pico = new Pico(width / 2, height / 2 + 50);
   }
   
   void display(){
@@ -52,6 +56,8 @@ class Maquina{
     for(Pin p : pines){
       p.display();
     }
+    
+    pico.display();
   }
   
   void colocarPines(){

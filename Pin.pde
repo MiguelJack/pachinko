@@ -1,13 +1,9 @@
 class Pin{
   Body body; 
   float radio;
-  float x;
-  float y;
   
-  Pin(float radioP, float xP, float yP){
+  Pin(float radioP, float x, float y){
     radio = radioP;
-    x = xP;
-    y = yP;
     BodyDef bodyDef = new BodyDef();
     bodyDef.position = box2d.coordPixelsToWorld(x, y);
     bodyDef.type = BodyType.STATIC;
@@ -25,9 +21,10 @@ class Pin{
   }
   
   void display(){
+    Vec2 posicion = box2d.getBodyPixelCoord(body);
     fill(#1D8B00);
     stroke(#2FDE00);
     strokeWeight(2);
-    ellipse(x, y, radio * 2, radio * 2);
+    ellipse(posicion.x, posicion.y, radio * 2, radio * 2);
   }
 }
