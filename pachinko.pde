@@ -9,13 +9,15 @@ ArrayList<Bolita> bolitas;
 Maquina maquina;
 
 float radioBolitas = 10;
+float anchoMaquina;
 
 void setup(){
   fullScreen();
+  anchoMaquina = width / 2;
   bolitas = new ArrayList();
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
-  maquina = new Maquina();
+  maquina = new Maquina(anchoMaquina);
   //bolitas.add(new Bolita(0.2, radioBolitas, (width / 3) * 2 - radioBolitas * 2, height)); 
 }
 
@@ -23,7 +25,7 @@ void draw(){
   background(0);
   
   if(mousePressed){
-    bolitas.add(new Bolita(0.2, radioBolitas, (width / 3) * 2 - radioBolitas, height)); 
+    bolitas.add(new Bolita(0.2, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height)); 
   }
   
   box2d.step();

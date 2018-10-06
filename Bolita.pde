@@ -26,7 +26,7 @@ class Bolita{
   
   boolean salio(){
     Vec2 posicion = box2d.getBodyPixelCoord(body);
-    if((posicion.x == width / 2) && (posicion.y == height - radio * 2)){
+    if(posicion.y == (height - radio * 2)){
       box2d.destroyBody(body); 
       return true;
     }
