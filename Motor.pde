@@ -1,10 +1,10 @@
-class MotorPico{
+class Motor{
   Pico pico;
   Base base;
   Joint joint;
   float alto = 280;
   
-  MotorPico(float x, float y, int lado){
+  Motor(float x, float y, int lado){
     base = new Base(x, y - alto / 2, 10, alto); 
     pico = new Pico(x, y - alto + 5);
     
