@@ -5,7 +5,7 @@ class Maquina{
   float ancho;
   int tipo;
   
-  Pico pico;
+  MotorPico motorPico;
 
   Maquina(float anchoP, int tipoP){
     ancho = anchoP;
@@ -41,7 +41,7 @@ class Maquina{
     
     colocarPines();
     
-    pico = new Pico(width / 2, height / 2 + 50);
+    motorPico = new MotorPico(width / 2, height * 0.8);
   }
   
   void display(){
@@ -57,7 +57,7 @@ class Maquina{
       p.display();
     }
     
-    pico.display();
+    motorPico.display();
   }
   
   void colocarPines(){

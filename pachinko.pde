@@ -3,6 +3,7 @@ import org.jbox2d.collision.shapes.*;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
 import java.util.ListIterator;
+import org.jbox2d.dynamics.joints.*;
 Box2DProcessing box2d;
 
 ArrayList<Bolita> bolitas;

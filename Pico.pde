@@ -4,47 +4,45 @@ class Pico{
   
   Pico(float x, float y){
     vertices = new ArrayList();
-    BodyDef bodyDef = new BodyDef();
-    bodyDef.position = box2d.coordPixelsToWorld(x, y);
-    bodyDef.type = BodyType.DYNAMIC;
-    bodyDef.angle = random(PI);
-    body = box2d.createBody(bodyDef);
-    
-    vertices.add(new Vec2(0, -70));
+    vertices.add(new Vec2(0, -120));
     vertices.add(new Vec2(10, 5));
     vertices.add(new Vec2(-10, 5));
-    vertices.add(new Vec2(0, -70));
     
+    PolygonShape polygonShape = new PolygonShape();
     Vec2[] puntosPico = new Vec2[vertices.size()];
     for(int i = 0; i < vertices.size(); i++){
        puntosPico[i] = box2d.coordPixelsToWorld(vertices.get(i));
     }
-    PolygonShape polygonShape = new PolygonShape();
     polygonShape.set(puntosPico, puntosPico.length);
     
     FixtureDef fixtureDef = new FixtureDef();
-    fixtureDef.shape = polygonShape;
-    fixtureDef.density = 1;
-    fixtureDef.restitution = 0.8;
-    fixtureDef.friction = 0;
+    fixtureDef.setShape(polygonShape);
+    fixtureDef.setDensity(1);
+    fixtureDef.setRestitution(0.8);
+    fixtureDef.setFriction(0);
     
+    BodyDef bodyDef = new BodyDef();
+    bodyDef.position = box2d.coordPixelsToWorld(x, y);
+    bodyDef.type = BodyType.DYNAMIC;
+    body = box2d.createBody(bodyDef);
     body.createFixture(fixtureDef);
-    
-    body.setAngularVelocity(5);
   }
   
   void display(){
     Vec2 posicion = box2d.getBodyPixelCoord(body);
+    PolygonShape polygonShape = (PolygonShape) body.getFixtureList().getShape();
     float angulo = body.getAngle();
-    pushMatrix();
-    //translate(posicion.x, posicion.y);
-    rotate(-angulo);
-    fill(#D66800);
+    rectMode(CENTER);
     stroke(#FF7C00);
     strokeWeight(2);
+    pushMatrix();
+    translate(posicion.x, posicion.y);
+    rotate(-angulo);
+    fill(#D66800);
     beginShape();
-    for(Vec2 v : vertices){
-      vertex(v.x, v.y); 
+    for (int i = 0; i < polygonShape.getVertexCount(); i++) {
+      Vec2 v = box2d.vectorWorldToPixels(polygonShape.getVertex(i));
+      vertex(v.x, v.y);
     }
     endShape(CLOSE);
     popMatrix();
