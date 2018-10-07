@@ -5,7 +5,8 @@ class Maquina{
   float ancho;
   int tipo;
   
-  MotorPico motorPico;
+  MotorPico motorPico1;
+  MotorPico motorPico2;
 
   Maquina(float anchoP, int tipoP){
     ancho = anchoP;
@@ -41,7 +42,8 @@ class Maquina{
     
     colocarPines();
     
-    motorPico = new MotorPico(width / 2, height * 0.8);
+    motorPico1 = new MotorPico((width - ancho) / 2 + 200, height, 1);
+    motorPico2 = new MotorPico((width - ancho) / 2 + ancho - 30 - 200, height, -1);
   }
   
   void display(){
@@ -56,8 +58,8 @@ class Maquina{
     for(Pin p : pines){
       p.display();
     }
-    
-    motorPico.display();
+    motorPico1.display();
+    motorPico2.display();
   }
   
   void colocarPines(){

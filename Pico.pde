@@ -11,13 +11,13 @@ class Pico{
     PolygonShape polygonShape = new PolygonShape();
     Vec2[] puntosPico = new Vec2[vertices.size()];
     for(int i = 0; i < vertices.size(); i++){
-       puntosPico[i] = box2d.coordPixelsToWorld(vertices.get(i));
+       puntosPico[i] = box2d.vectorPixelsToWorld(vertices.get(i));
     }
     polygonShape.set(puntosPico, puntosPico.length);
     
     FixtureDef fixtureDef = new FixtureDef();
     fixtureDef.setShape(polygonShape);
-    fixtureDef.setDensity(1);
+    fixtureDef.setDensity(10);
     fixtureDef.setRestitution(0.8);
     fixtureDef.setFriction(0);
     
@@ -46,5 +46,9 @@ class Pico{
     }
     endShape(CLOSE);
     popMatrix();
+  }
+  
+  Body getBody(){
+    return body; 
   }
 }
