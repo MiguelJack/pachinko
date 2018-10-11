@@ -12,12 +12,22 @@ class Motor{
     
     RevoluteJointDef revoluteJointDef = new RevoluteJointDef();
     revoluteJointDef.initialize(base.body, pico.body, pico.body.getTransform().p);
-    revoluteJointDef.motorSpeed = PI * lado;
+    revoluteJointDef.motorSpeed = PI/2 * lado;
     revoluteJointDef.maxMotorTorque = 500000000;
     revoluteJointDef.referenceAngle = 0;
     
-    revoluteJointDef.lowerAngle = radians(-90 * -lado); 
-    revoluteJointDef.upperAngle = radians(-45 * -lado); 
+    int lAngle;
+    int uAngle;
+    if(lado < 0){
+      lAngle = -90;
+      uAngle = -45;
+    }else{
+      lAngle = 45;
+      uAngle = 90;
+    }
+    
+    revoluteJointDef.lowerAngle = radians(lAngle); 
+    revoluteJointDef.upperAngle = radians(uAngle); 
     revoluteJointDef.enableMotor = true;
     revoluteJointDef.enableLimit = true;
     
@@ -25,11 +35,15 @@ class Motor{
   }
   
   void display(){
+    int mult = 1;
+    if (lado > 0){
+      mult = -1;
+    }
     if(joint.getJointAngle() <= joint.getLowerLimit()){
-      joint.setMotorSpeed(PI * -lado); 
+      joint.setMotorSpeed(PI/2 * -lado * mult); 
     }
     if(joint.getJointAngle() >= joint.getUpperLimit()){
-      joint.setMotorSpeed(PI * lado); 
+      joint.setMotorSpeed(PI/2 * lado * mult); 
     }
     base.display();
     pico.display();
