@@ -1,11 +1,11 @@
-class Motor{
+class MotorPico{
   Pico pico;
   Base base;
   RevoluteJoint joint;
   float alto = 280;
   int lado;
   
-  Motor(float x, float y, int ladoP){
+  MotorPico(float x, float y, int ladoP){
     base = new Base(x, y - alto / 2, 10, alto); 
     pico = new Pico(x, y - alto + 5);
     lado = ladoP;
