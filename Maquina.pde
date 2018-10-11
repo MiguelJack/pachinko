@@ -1,12 +1,10 @@
 class Maquina{
   ArrayList<Vec2> puntos;
   ArrayList<Pin> pines;
+  ArrayList<MotorPico> motoresPico;
   
   float ancho;
   int tipo;
-  
-  MotorPico motorPico1;
-  MotorPico motorPico2;
 
   Maquina(float anchoP, int tipoP){
     ancho = anchoP;
@@ -14,6 +12,7 @@ class Maquina{
     
     puntos = new ArrayList();
     pines = new ArrayList();
+    motoresPico = new ArrayList();
     
     BodyDef bodyDef = new BodyDef();
     bodyDef.position = new Vec2();
@@ -41,9 +40,7 @@ class Maquina{
     body.createFixture(chainShape, 1);
     
     colocarPines();
-    
-    motorPico1 = new MotorPico((width - ancho) / 2 + 200, height, -1);
-    motorPico2 = new MotorPico((width - ancho) / 2 + ancho - 30 - 200, height, 1);
+    colocarMotores();
   }
   
   void display(){
@@ -58,19 +55,28 @@ class Maquina{
     for(Pin p : pines){
       p.display();
     }
-    motorPico1.display();
-    motorPico2.display();
+    
+    for(MotorPico mp : motoresPico){
+      mp.display();
+    }
   }
   
   void colocarPines(){
-    ArrayList<Vec2> puntos = new ArrayList();
+    ArrayList<Vec2> puntosPines = new ArrayList();
    
     if(tipo == 1){
-      puntos = pinesMaquina1();
+      puntosPines = pinesMaquina1();
     }
     
-    for(Vec2 v : puntos){
+    for(Vec2 v : puntosPines){
        pines.add(new Pin(5, v.x, v.y));
+    }
+  }
+  
+  void colocarMotores(){
+    if(tipo == 1){
+      motoresPico.add(new MotorPico((width - ancho) / 2 + 200, height, -1));
+      motoresPico.add(new MotorPico((width - ancho) / 2 + ancho - 30 - 200, height, 1));
     }
   }
   
