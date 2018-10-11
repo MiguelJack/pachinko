@@ -17,7 +17,7 @@ class Pico{
     
     FixtureDef fixtureDef = new FixtureDef();
     fixtureDef.setShape(polygonShape);
-    fixtureDef.setDensity(100);
+    fixtureDef.setDensity(1000);
     fixtureDef.setRestitution(0);
     fixtureDef.setFriction(0);
     

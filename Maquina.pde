@@ -42,8 +42,8 @@ class Maquina{
     
     colocarPines();
     
-    motorPico1 = new Motor((width - ancho) / 2 + 200, height, 1);
-    motorPico2 = new Motor((width - ancho) / 2 + ancho - 30 - 200, height, -1);
+    motorPico1 = new Motor((width - ancho) / 2 + 200, height, -1);
+    motorPico2 = new Motor((width - ancho) / 2 + ancho - 30 - 200, height, 1);
   }
   
   void display(){
@@ -80,9 +80,9 @@ class Maquina{
     int vuelta = 1;
     float y = 130;
     while(y < height / 2){
-      float x = ((width - ancho) / 2 + 10);
+      float x = ((width - ancho) / 2 + 5);
       if (vuelta < 0){
-        x += 27; 
+        x += 45; 
       }
       while(x < ((width - ancho) / 2 + ancho - 40)){
         puntos.add(new Vec2(x, y));

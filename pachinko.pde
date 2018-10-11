@@ -1,7 +1,9 @@
 import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
+import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
+import org.jbox2d.dynamics.contacts.*;
 import java.util.ListIterator;
 import org.jbox2d.dynamics.joints.*;
 Box2DProcessing box2d;
@@ -9,7 +11,7 @@ Box2DProcessing box2d;
 ArrayList<Bolita> bolitas;
 Maquina maquina;
 
-float radioBolitas = 10;
+float radioBolitas = 8;
 float anchoMaquina;
 int tipoMaquina;
 
