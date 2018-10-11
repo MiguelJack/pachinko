@@ -78,15 +78,15 @@ class Maquina{
     ArrayList<Vec2> puntos = new ArrayList();
     
     int vuelta = 1;
-    float y = 120;
+    float y = 130;
     while(y < height / 2){
-      float x = ((width - ancho) / 2 + 20);
+      float x = ((width - ancho) / 2 + 10);
       if (vuelta < 0){
         x += 27; 
       }
-      while(x < ((width - ancho) / 2 + ancho - 20)){
+      while(x < ((width - ancho) / 2 + ancho - 40)){
         puntos.add(new Vec2(x, y));
-        x += 54;
+        x += 90;
       }
       y += 54;
       vuelta *= -1;

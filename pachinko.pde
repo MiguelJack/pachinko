@@ -30,7 +30,10 @@ void draw(){
   background(0);
   
   if(mousePressed){
-    bolitas.add(new Bolita(0.2, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height)); 
+    float i = random(1,10);
+    if(i < 5){
+      bolitas.add(new Bolita(0.2, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height)); 
+    }
   }
   
   box2d.step();

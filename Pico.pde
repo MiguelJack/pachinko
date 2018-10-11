@@ -4,7 +4,7 @@ class Pico{
   
   Pico(float x, float y){
     vertices = new ArrayList();
-    vertices.add(new Vec2(0, -120));
+    vertices.add(new Vec2(0, -130));
     vertices.add(new Vec2(10, 5));
     vertices.add(new Vec2(-10, 5));
     
@@ -17,8 +17,8 @@ class Pico{
     
     FixtureDef fixtureDef = new FixtureDef();
     fixtureDef.setShape(polygonShape);
-    fixtureDef.setDensity(10);
-    fixtureDef.setRestitution(0.8);
+    fixtureDef.setDensity(100);
+    fixtureDef.setRestitution(0);
     fixtureDef.setFriction(0);
     
     BodyDef bodyDef = new BodyDef();

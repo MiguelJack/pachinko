@@ -10,8 +10,8 @@ class Motor{
     
     RevoluteJointDef revoluteJointDef = new RevoluteJointDef();
     revoluteJointDef.initialize(base.body, pico.body, pico.body.getTransform().p);
-    revoluteJointDef.motorSpeed = PI * lado;
-    revoluteJointDef.maxMotorTorque = 50000;
+    revoluteJointDef.motorSpeed = PI * lado * 3;
+    revoluteJointDef.maxMotorTorque = 500000000;
     revoluteJointDef.enableMotor = true;
     
     joint = box2d.world.createJoint(revoluteJointDef);

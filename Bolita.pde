@@ -21,7 +21,7 @@ class Bolita{
     
     body.createFixture(fixtureDef);
     
-    body.setLinearVelocity(new Vec2(0, 40));
+    body.setLinearVelocity(new Vec2(0, 80));
   }
   
   boolean salio(float anchoMaquina){
