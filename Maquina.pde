@@ -78,8 +78,12 @@ class Maquina{
     }
     
     fill(#0027F7);
+    strokeWeight(0);
     rectMode(CORNER);
-    rect((width - ancho) / 2 + 205, height - 20, 80, 20);
+    
+    if(tipo == 1){
+      rect((width - ancho) / 2 + 205, height - 20, 80, 20);
+    }
   }
   
   void colocarPines(){
