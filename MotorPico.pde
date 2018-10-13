@@ -2,7 +2,7 @@ class MotorPico{
   Pico pico;
   Base base;
   RevoluteJoint joint;
-  float alto = 320;
+  float alto = 250;
   int lado;
   
   MotorPico(float x, float y, int ladoP){

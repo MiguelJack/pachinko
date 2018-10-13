@@ -4,7 +4,7 @@ class Pico{
   
   Pico(float x, float y){
     vertices = new ArrayList();
-    vertices.add(new Vec2(0, -130));
+    vertices.add(new Vec2(0, -135));
     vertices.add(new Vec2(10, 5));
     vertices.add(new Vec2(-10, 5));
     

@@ -16,14 +16,15 @@ float anchoMaquina;
 int tipoMaquina;
 
 void setup(){
-  fullScreen();
+  //fullScreen();
+  size(1200, 650);
   bolitas = new ArrayList();
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   
   tipoMaquina = 1; //Esto se tiene que cambiar con un menu en un futuro
   if(tipoMaquina == 1){
-    anchoMaquina = width / 2;
+    anchoMaquina = 700;
   }
   maquina = new Maquina(anchoMaquina, 1);
 }

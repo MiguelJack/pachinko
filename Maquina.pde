@@ -2,6 +2,7 @@ class Maquina{
   ArrayList<Vec2> puntos;
   ArrayList<Pin> pines;
   ArrayList<MotorPico> motoresPico;
+  ArrayList<Base> paredes;
   
   float ancho;
   int tipo;
@@ -13,6 +14,7 @@ class Maquina{
     puntos = new ArrayList();
     pines = new ArrayList();
     motoresPico = new ArrayList();
+    paredes = new ArrayList();
     
     BodyDef bodyDef = new BodyDef();
     bodyDef.position = new Vec2();
@@ -23,7 +25,11 @@ class Maquina{
     puntos.add(new Vec2((width - ancho) / 2, height));
     
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, height));
-    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, 150));
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, 135));
+    
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 100, 50));
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, 135));
+    
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, height));
     puntos.add(new Vec2((width - ancho) / 2 + ancho, height));
     
@@ -39,8 +45,15 @@ class Maquina{
     chainShape.createChain(puntosMaquina, puntosMaquina.length);
     body.createFixture(chainShape, 1);
     
+    colocarParedes();
     colocarPines();
     colocarMotores();
+  }
+  
+  void colocarParedes(){
+    float espacio = ((width - ancho) / 2 + ancho - 30 - 200) - ((width - ancho) / 2 + 200);
+    paredes.add(new Base(((width - ancho) / 2 + 200) + espacio / 3, height, 10, 400));
+    paredes.add(new Base(((width - ancho) / 2 + 200) + (espacio / 3 * 2), height, 10, 400));
   }
   
   void display(){
@@ -58,6 +71,10 @@ class Maquina{
     
     for(MotorPico mp : motoresPico){
       mp.display();
+    }
+    
+    for(Base p : paredes){
+      p.display(); 
     }
   }
   
@@ -84,10 +101,12 @@ class Maquina{
     ArrayList<Vec2> puntos = new ArrayList();
     
     int vuelta = 1;
-    float y = 130;
+    float y = 70;
+    float x;
+    float inicioMaquina = ((width - ancho) / 2 + 20); 
     while(y < height / 2){
-      float x = ((width - ancho) / 2 + 5);
-      if (vuelta < 0){
+      x = inicioMaquina;
+      if (vuelta > 0){
         x += 45; 
       }
       while(x < ((width - ancho) / 2 + ancho - 40)){
@@ -97,7 +116,26 @@ class Maquina{
       y += 54;
       vuelta *= -1;
     }
-   
+    
+    x = inicioMaquina + 45;
+    while(x < ((width - ancho) / 2 + ancho - 40)){
+      if (x != (225 + inicioMaquina) && x != (315 + inicioMaquina) && x != (405 + inicioMaquina)){
+        puntos.add(new Vec2(x, y));
+      }
+      x += 90;
+    }
+    
+    y += 54;
+    while(y < height){
+      x = inicioMaquina + 90;
+      while(x < ((width - ancho) / 2 + ancho - 40)){
+        if(x != (180 + inicioMaquina) && x != (270 + inicioMaquina) && x != (360 + inicioMaquina) && x != (450 + inicioMaquina) && x != (630 + inicioMaquina)){
+          puntos.add(new Vec2(x, y));
+        }
+        x += 90;
+      }
+      y += 54;
+    } 
     return puntos;
   }
 }
