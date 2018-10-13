@@ -76,6 +76,10 @@ class Maquina{
     for(Base p : paredes){
       p.display(); 
     }
+    
+    fill(#0027F7);
+    rectMode(CORNER);
+    rect((width - ancho) / 2 + 205, height - 20, 80, 20);
   }
   
   void colocarPines(){

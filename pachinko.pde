@@ -14,6 +14,7 @@ Maquina maquina;
 float radioBolitas = 8;
 float anchoMaquina;
 int tipoMaquina;
+float x1, x2;
 
 void setup(){
   //fullScreen();
@@ -25,6 +26,8 @@ void setup(){
   tipoMaquina = 1; //Esto se tiene que cambiar con un menu en un futuro
   if(tipoMaquina == 1){
     anchoMaquina = 700;
+    x1 = (width - anchoMaquina) / 2 + 205;
+    x2 = (width - anchoMaquina) / 2 + 285;
   }
   maquina = new Maquina(anchoMaquina, 1);
 }
@@ -50,8 +53,12 @@ void draw(){
   ListIterator<Bolita> pennywise = bolitas.listIterator();
   while(pennywise.hasNext()){
     Bolita b = pennywise.next();
-    if(b.salio(anchoMaquina)){
-      pennywise.remove();
+    if(b.gano(x1, x2)){
+      stop(); 
+    }else{
+      if(b.salio(anchoMaquina)){
+        pennywise.remove();
+      }
     }
   }
 }

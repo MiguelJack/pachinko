@@ -24,6 +24,14 @@ class Bolita{
     body.setLinearVelocity(new Vec2(0, 80));
   }
   
+  boolean gano(float x1, float x2){
+     Vec2 posicion = box2d.getBodyPixelCoord(body);
+     if((posicion.y >= (height - radio * 2)) && (posicion.x >= x1) && (posicion.x <= x2)){
+       return true;  
+     }
+     return false;
+  }
+  
   boolean salio(float anchoMaquina){
     Vec2 posicion = box2d.getBodyPixelCoord(body);
     if((posicion.y >= (height - radio * 2)) && (posicion.x < (width - anchoMaquina) / 2 + anchoMaquina - 30)){
