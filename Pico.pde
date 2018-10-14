@@ -2,11 +2,8 @@ class Pico{
   Body body;
   ArrayList<Vec2> vertices;
   
-  Pico(float x, float y){
-    vertices = new ArrayList();
-    vertices.add(new Vec2(0, -135));
-    vertices.add(new Vec2(10, 5));
-    vertices.add(new Vec2(-10, 5));
+  Pico(float x, float y, ArrayList<Vec2> verticesP){
+    vertices = verticesP;
     
     PolygonShape polygonShape = new PolygonShape();
     Vec2[] puntosPico = new Vec2[vertices.size()];

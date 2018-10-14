@@ -2,29 +2,24 @@ class MotorPico{
   Pico pico;
   Base base;
   RevoluteJoint joint;
-  float alto = 250;
+  float alto;
   int lado;
+  float lAngle;
+  float uAngle;
   
-  MotorPico(float x, float y, int ladoP){
-    base = new Base(x, y - alto / 2, 10, alto); 
-    pico = new Pico(x, y - alto + 5);
+  MotorPico(float x, float y, int ladoP, float altoP, Base baseP, Pico picoP, float lAngleP, float uAngleP){
+    alto = altoP;
+    base = baseP; 
+    pico = picoP;
     lado = ladoP;
+    lAngle = lAngleP;
+    uAngle = uAngleP;
     
     RevoluteJointDef revoluteJointDef = new RevoluteJointDef();
     revoluteJointDef.initialize(base.body, pico.body, pico.body.getTransform().p);
     revoluteJointDef.motorSpeed = PI/2 * lado;
     revoluteJointDef.maxMotorTorque = 500000000;
     revoluteJointDef.referenceAngle = 0;
-    
-    int lAngle;
-    int uAngle;
-    if(lado < 0){
-      lAngle = -90;
-      uAngle = -45;
-    }else{
-      lAngle = 45;
-      uAngle = 90;
-    }
     
     revoluteJointDef.lowerAngle = radians(lAngle); 
     revoluteJointDef.upperAngle = radians(uAngle); 

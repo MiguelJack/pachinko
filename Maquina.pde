@@ -96,8 +96,28 @@ class Maquina{
   
   void colocarMotores(){
     if(tipo == 1){
-      motoresPico.add(new MotorPico((width - ancho) / 2 + 200, height, -1));
-      motoresPico.add(new MotorPico((width - ancho) / 2 + ancho - 30 - 200, height, 1));
+      //Vertices del Pico
+      ArrayList<Vec2> vertices = new ArrayList();
+      vertices.add(new Vec2(0, -135));
+      vertices.add(new Vec2(10, 5));
+      vertices.add(new Vec2(-10, 5));
+      
+      float alto = 250;
+      
+      //Creacion Pico 1
+      float x = (width - ancho) / 2 + 200;
+      float y = height;
+      
+      Base base1 = new Base(x, y - alto / 2, 10, alto);
+      Pico pico1 = new Pico(x, y - alto + 5, vertices);
+      motoresPico.add(new MotorPico(x, y, -1, alto, base1, pico1, -90, -45));
+      
+      //Creacion Pico 2
+      x = (width - ancho) / 2 + ancho - 30 - 200;
+      
+      Base base2 = new Base(x, y - alto / 2, 10, alto);
+      Pico pico2 = new Pico(x, y - alto + 5, vertices);
+      motoresPico.add(new MotorPico(x, height, 1, alto, base2, pico2, 45, 90));
     }
   }
   
