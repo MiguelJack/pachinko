@@ -44,17 +44,13 @@ class Maquina{
     ChainShape chainShape = new ChainShape();
     chainShape.createChain(puntosMaquina, puntosMaquina.length);
     body.createFixture(chainShape, 1);
-    
-    colocarParedes();
+     
     colocarPines();
     colocarMotores();
+    colocarParedes();
   }
   
-  void colocarParedes(){
-    float espacio = ((width - ancho) / 2 + ancho - 30 - 200) - ((width - ancho) / 2 + 200);
-    paredes.add(new Base(((width - ancho) / 2 + 200) + espacio / 3, height, 10, 400));
-    paredes.add(new Base(((width - ancho) / 2 + 200) + (espacio / 3 * 2), height, 10, 400));
-  }
+  
   
   void display(){
     stroke(255);
@@ -102,6 +98,14 @@ class Maquina{
     if(tipo == 1){
       motoresPico.add(new MotorPico((width - ancho) / 2 + 200, height, -1));
       motoresPico.add(new MotorPico((width - ancho) / 2 + ancho - 30 - 200, height, 1));
+    }
+  }
+  
+  void colocarParedes(){
+    if(tipo == 1){
+      float espacio = ((width - ancho) / 2 + ancho - 30 - 200) - ((width - ancho) / 2 + 200);
+      paredes.add(new Base(((width - ancho) / 2 + 200) + espacio / 3, height, 10, 400));
+      paredes.add(new Base(((width - ancho) / 2 + 200) + (espacio / 3 * 2), height, 10, 400));
     }
   }
   
