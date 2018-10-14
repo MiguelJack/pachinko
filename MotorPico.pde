@@ -2,13 +2,11 @@ class MotorPico{
   Pico pico;
   Base base;
   RevoluteJoint joint;
-  float alto;
   int lado;
   float lAngle;
   float uAngle;
   
-  MotorPico(float x, float y, int ladoP, float altoP, Base baseP, Pico picoP, float lAngleP, float uAngleP){
-    alto = altoP;
+  MotorPico(float x, float y, int ladoP, Base baseP, Pico picoP, float lAngleP, float uAngleP){
     base = baseP; 
     pico = picoP;
     lado = ladoP;
