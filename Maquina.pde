@@ -126,7 +126,7 @@ class Maquina{
         
         Base base2 = new Base(x, y - alto / 2, 10, alto);
         Pico pico2 = new Pico(x, y - alto + 5, vertices);
-        motoresPico.add(new MotorPico(x, height, 1, base2, pico2, 45, 90));
+        motoresPico.add(new MotorPico(x, y, 1, base2, pico2, 45, 90));
         break;
       default:
         break;
