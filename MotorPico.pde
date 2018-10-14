@@ -5,17 +5,19 @@ class MotorPico{
   int lado;
   float lAngle;
   float uAngle;
+  float motorSpeed;
   
-  MotorPico(float x, float y, int ladoP, Base baseP, Pico picoP, float lAngleP, float uAngleP){
+  MotorPico(int ladoP, Base baseP, Pico picoP, float lAngleP, float uAngleP, float motorSpeedP){
     base = baseP; 
     pico = picoP;
     lado = ladoP;
     lAngle = lAngleP;
     uAngle = uAngleP;
+    motorSpeed = motorSpeedP;
     
     RevoluteJointDef revoluteJointDef = new RevoluteJointDef();
     revoluteJointDef.initialize(base.body, pico.body, pico.body.getTransform().p);
-    revoluteJointDef.motorSpeed = PI/2 * lado;
+    revoluteJointDef.motorSpeed = motorSpeed * lado;
     revoluteJointDef.maxMotorTorque = 500000000;
     revoluteJointDef.referenceAngle = 0;
     
@@ -33,10 +35,10 @@ class MotorPico{
       mult = -1;
     }
     if(joint.getJointAngle() <= joint.getLowerLimit()){
-      joint.setMotorSpeed(PI/2 * -lado * mult); 
+      joint.setMotorSpeed(motorSpeed * -lado * mult); 
     }
     if(joint.getJointAngle() >= joint.getUpperLimit()){
-      joint.setMotorSpeed(PI/2 * lado * mult); 
+      joint.setMotorSpeed(motorSpeed * lado * mult); 
     }
     base.display();
     pico.display();

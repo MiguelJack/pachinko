@@ -23,13 +23,23 @@ void setup(){
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
   
-  tipoMaquina = 1; //Esto se tiene que cambiar con un menu en un futuro
-  if(tipoMaquina == 1){
-    anchoMaquina = 700;
-    x1 = (width - anchoMaquina) / 2 + 205;
-    x2 = (width - anchoMaquina) / 2 + 285;
+  tipoMaquina = 2; //Esto se tiene que cambiar con un menu en un futuro
+  switch (tipoMaquina){
+    case 1:
+      anchoMaquina = 700;
+      x1 = (width - anchoMaquina) / 2 + 205;
+      x2 = (width - anchoMaquina) / 2 + 285;
+      break;
+    case 2:
+      anchoMaquina = 700;
+      x1 = (width - anchoMaquina) / 2 + 205;
+      x2 = (width - anchoMaquina) / 2 + 285;  
+      break;
+    default:
+      break;
   }
-  maquina = new Maquina(anchoMaquina, 1);
+
+  maquina = new Maquina(anchoMaquina, tipoMaquina);
 }
 
 void draw(){

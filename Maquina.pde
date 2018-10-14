@@ -103,31 +103,43 @@ class Maquina{
   }
   
   void colocarMotores(){
+    ArrayList<Vec2> vertices = new ArrayList();
+    float alto, x;
     switch (tipo){
       case 1:
         //Vertices del Pico
-        ArrayList<Vec2> vertices = new ArrayList();
         vertices.add(new Vec2(0, -135));
         vertices.add(new Vec2(10, 5));
         vertices.add(new Vec2(-10, 5));
         
-        float alto = 250;
+        alto = 250;
         
         //Creacion Pico 1
-        float x = (width - ancho) / 2 + 200;
-        float y = height;
+        x = (width - ancho) / 2 + 200;
         
-        Base base1 = new Base(x, y - alto / 2, 10, alto);
-        Pico pico1 = new Pico(x, y - alto + 5, vertices);
-        motoresPico.add(new MotorPico(x, y, -1, base1, pico1, -90, -45));
+        Base base1m1 = new Base(x, height - alto / 2, 10, alto);
+        Pico pico1m1 = new Pico(x, height - alto + 5, vertices);
+        motoresPico.add(new MotorPico(-1, base1m1, pico1m1, -90, -45, PI/2));
         
         //Creacion Pico 2
         x = (width - ancho) / 2 + ancho - 30 - 200;
         
-        Base base2 = new Base(x, y - alto / 2, 10, alto);
-        Pico pico2 = new Pico(x, y - alto + 5, vertices);
-        motoresPico.add(new MotorPico(x, y, 1, base2, pico2, 45, 90));
+        Base base2m1 = new Base(x, height - alto / 2, 10, alto);
+        Pico pico2m1 = new Pico(x, height - alto + 5, vertices);
+        motoresPico.add(new MotorPico(1, base2m1, pico2m1, 45, 90, PI/2));
         break;
+      case 2:
+        vertices.add(new Vec2(0, -105));
+        vertices.add(new Vec2(10, 5));
+        vertices.add(new Vec2(-10, 5));
+          
+        alto = 300;
+        
+        x = (width - ancho) / 2 + 250;
+        
+        Base base1m2 = new Base(x, height - alto, 10, 10);
+        Pico pico1m2 = new Pico(x, height - alto + 5, vertices);
+        motoresPico.add(new MotorPico(-1, base1m2, pico1m2, -55, -35, PI/3));
       default:
         break;
     }
