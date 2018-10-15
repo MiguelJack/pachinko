@@ -40,6 +40,24 @@ class Bolita{
     }
     return false;
   }
+ 
+   void attract(float x,float y) {
+    Vec2 worldTarget = box2d.coordPixelsToWorld(x,y);   
+    Vec2 bodyVec = body.getWorldCenter();
+    worldTarget.subLocal(bodyVec);
+    worldTarget.normalize();
+    worldTarget.mulLocal((float) 8);
+    body.applyForce(worldTarget, bodyVec);
+  }
+
+   void repel(float x,float y) {
+    Vec2 worldTarget = box2d.coordPixelsToWorld(x,y);   
+    Vec2 bodyVec = body.getWorldCenter();
+    worldTarget.subLocal(bodyVec);
+    worldTarget.normalize();
+    worldTarget.mulLocal((float) -10);
+    body.applyForce(worldTarget, bodyVec);
+  }
   
   void display(){
     Vec2 posicion = box2d.getBodyPixelCoord(body);

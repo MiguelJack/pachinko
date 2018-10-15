@@ -3,6 +3,8 @@ class Maquina{
   ArrayList<Pin> pines;
   ArrayList<MotorPico> motoresPico;
   ArrayList<Base> paredes;
+  ArrayList<Atractores> atractores;
+  ArrayList<Repeledores> repeledores;
   
   float ancho;
   int tipo;
@@ -15,6 +17,8 @@ class Maquina{
     pines = new ArrayList();
     motoresPico = new ArrayList();
     paredes = new ArrayList();
+    atractores = new ArrayList();
+    repeledores = new ArrayList();
     
     BodyDef bodyDef = new BodyDef();
     bodyDef.position = new Vec2();
@@ -48,6 +52,7 @@ class Maquina{
     colocarPines();
     colocarMotores();
     colocarParedes();
+    colocarRepeledoresAtractores();
   }
   
   
@@ -72,6 +77,14 @@ class Maquina{
     for(Base p : paredes){
       p.display(); 
     }
+    
+    for (Atractores a : atractores){
+      a.draw();
+    }
+    for (Repeledores r : repeledores){
+      r.draw();
+    }
+    
     
     fill(#0027F7);
     strokeWeight(0);
@@ -100,6 +113,7 @@ class Maquina{
     for(Vec2 v : puntosPines){
        pines.add(new Pin(5, v.x, v.y));
     }
+    
   }
   
   void colocarMotores(){
@@ -157,6 +171,14 @@ class Maquina{
     }
   }
   
+  
+  void colocarRepeledoresAtractores(){
+    atractores.add(new Atractores(width/2,height/3));
+    atractores.add(new Atractores(width/2,height/4.5));
+    repeledores.add(new Repeledores(width/3.5,height/4));
+    repeledores.add(new Repeledores(width/1.5,height/4)); 
+}
+   
   ArrayList<Vec2> pinesMaquina1(){
     ArrayList<Vec2> puntos = new ArrayList();
     
