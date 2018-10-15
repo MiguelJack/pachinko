@@ -13,17 +13,70 @@ Maquina maquina;
 
 float radioBolitas = 8;
 float anchoMaquina;
-int tipoMaquina;
+int tipoMaquina = 0;
 float x1, x2;
 
+int pantallaActual = 0;
+
+Boton textoInicio;
+Boton botonMaquinaConf1;
+Boton botonMaquinaConf2;
+
 void setup(){
-  //fullScreen();
   size(1200, 650);
+  
+  textoInicio = new Boton("Seleccione el tipo de maquina", 600, 325, 300, 50);
+  botonMaquinaConf1 = new Boton("Tipo 1", 550, 500, 100, 50);
+  botonMaquinaConf2 = new Boton("Tipo 2", 850, 500, 100, 50);
+}
+
+void draw(){
+  background(0);
+  if (pantallaActual == 0)
+  {
+    pantallaInicio();
+  }else{
+    eliminarElementsPantallaInicio();
+    pantallaJuego();
+  }
+}
+
+void pantallaInicio(){
+  background(0);
+  textoInicio.dibujar();
+  botonMaquinaConf1.dibujar();
+  botonMaquinaConf2.dibujar();
+  
+  if (mousePressed)
+  { 
+    if (botonMaquinaConf1.mouseEncima())
+    {
+      tipoMaquina = 1;
+      pantallaActual = 1;
+      configurarPantallaJuego();
+    }
+    
+    if (botonMaquinaConf2.mouseEncima())
+    {
+      tipoMaquina = 2;
+      pantallaActual = 1;
+      configurarPantallaJuego();
+    }
+  }
+}
+
+void eliminarElementsPantallaInicio()
+{
+  textoInicio = null;
+  botonMaquinaConf1 = null;
+  botonMaquinaConf2 = null;
+}
+
+void configurarPantallaJuego()
+{
   bolitas = new ArrayList();
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
-  
-  tipoMaquina = 2; //Esto se tiene que cambiar con un menu en un futuro
   switch (tipoMaquina){
     case 1:
       anchoMaquina = 700;
@@ -35,14 +88,11 @@ void setup(){
       x1 = (width - anchoMaquina) / 2 + 205;
       x2 = (width - anchoMaquina) / 2 + 285;  
       break;
-    default:
-      break;
   }
-
   maquina = new Maquina(anchoMaquina, tipoMaquina);
 }
 
-void draw(){
+void pantallaJuego(){
   background(0);
   
   if(mousePressed){
