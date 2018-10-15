@@ -143,17 +143,22 @@ class Maquina{
         motoresPico.add(new MotorPico(1, base2m1, pico2m1, 45, 90, PI/2));
         break;
       case 2:
-        vertices.add(new Vec2(0, -105));
+        vertices.add(new Vec2(0, -90));
         vertices.add(new Vec2(10, 5));
         vertices.add(new Vec2(-10, 5));
           
-        alto = 300;
+        alto = 350;
         
-        x = (width - ancho) / 2 + 250;
+        x = (width - ancho) / 2 + 255;
         
         Base base1m2 = new Base(x, height - alto, 10, 10);
         Pico pico1m2 = new Pico(x, height - alto + 5, vertices);
         motoresPico.add(new MotorPico(-1, base1m2, pico1m2, -55, -35, PI/3));
+        
+        x = (width - ancho) / 2 + ancho - 30 - 255;
+        Base base2m2 = new Base(x, height - alto, 10, 10);
+        Pico pico2m2 = new Pico(x, height - alto + 5, vertices);
+        motoresPico.add(new MotorPico(-1, base2m2, pico2m2, 35, 55, PI/3));
       default:
         break;
     }
@@ -173,11 +178,17 @@ class Maquina{
   
   
   void colocarRepeledoresAtractores(){
-    atractores.add(new Atractores(width/2,height/3));
-    atractores.add(new Atractores(width/2,height/4.5));
-    repeledores.add(new Repeledores(width/3.5,height/4));
-    repeledores.add(new Repeledores(width/1.5,height/4)); 
-}
+    switch (tipo){
+      case 1:
+        atractores.add(new Atractores(width/2,height/3));
+        atractores.add(new Atractores(width/2,height/4.5));
+        repeledores.add(new Repeledores(width/3.5,height/4));
+        repeledores.add(new Repeledores(width/1.5,height/4)); 
+        break;
+      default:
+        break;
+    }
+  }
    
   ArrayList<Vec2> pinesMaquina1(){
     ArrayList<Vec2> puntos = new ArrayList();
