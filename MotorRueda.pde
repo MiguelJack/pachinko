@@ -10,7 +10,7 @@ class MotorRueda{
     RevoluteJointDef revoluteJointDef = new RevoluteJointDef();
     revoluteJointDef.initialize(base.body, rueda.body, rueda.body.getTransform().p);
     revoluteJointDef.motorSpeed = PI * 2;
-    revoluteJointDef.maxMotorTorque = 1000;
+    revoluteJointDef.maxMotorTorque = 1;
     revoluteJointDef.enableMotor = false;
     
     joint = (RevoluteJoint) box2d.world.createJoint(revoluteJointDef);

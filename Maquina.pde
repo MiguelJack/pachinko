@@ -113,6 +113,8 @@ class Maquina{
       case 1:
         puntosPines = pinesMaquina1();
         break;
+      case 2:
+        puntosPines = pinesMaquina2();
       default:
         break;
     }
@@ -154,7 +156,7 @@ class Maquina{
         vertices.add(new Vec2(10, 5));
         vertices.add(new Vec2(-10, 5));
           
-        alto = 355;
+        alto = 350;
         
         x = (width - ancho) / 2 + 255; 
         Base base1m2 = new Base(x, height - alto, 10, 10);
@@ -174,16 +176,27 @@ class Maquina{
     float x, alto;
     switch (tipo){
       case 2:
-        alto = 300;
-        x = (width - ancho) / 2 + 100;
+        alto = 280;
+        x = (width - ancho) / 2 + 90;
         Base base1m2 = new Base(x, height - alto, 10, 10);
         Rueda rueda1m2 = new Rueda(x, height - alto, 40);
         motoresRueda.add(new MotorRueda(base1m2, rueda1m2));
         
-        x = (width - ancho) / 2 + ancho - 30 - 100;
+        x = (width - ancho) / 2 + ancho - 30 - 90;
         Base base2m2 = new Base(x, height - alto, 10, 10);
         Rueda rueda2m2 = new Rueda(x, height - alto, 40);
         motoresRueda.add(new MotorRueda(base2m2, rueda2m2));
+        
+        alto = 410;
+        x = (width - ancho) / 2 + 180;
+        Base base3m2 = new Base(x, height - alto, 10, 10);
+        Rueda rueda3m2 = new Rueda(x, height - alto, 30);
+        motoresRueda.add(new MotorRueda(base3m2, rueda3m2));
+        
+        x = (width - ancho) / 2 + ancho - 30 - 180;
+        Base base4m2 = new Base(x, height - alto, 10, 10);
+        Rueda rueda4m2 = new Rueda(x, height - alto, 30);
+        motoresRueda.add(new MotorRueda(base4m2, rueda4m2));
         break;
       default:
         break;
@@ -225,6 +238,10 @@ class Maquina{
         atractores.add(new Atractores(width/2,height/4.5));
         repeledores.add(new Repeledores(width/3.5,height/4));
         repeledores.add(new Repeledores(width/1.5,height/4)); 
+        break;
+      case 2:
+        //repeledores.add(new Repeledores((width - ancho) / 2 + 290, height - 280));
+        //repeledores.add(new Repeledores((width - ancho) / 2 + ancho - 30 - 290, height - 280));
         break;
       default:
         break;
@@ -270,6 +287,52 @@ class Maquina{
       }
       y += 54;
     } 
+    return puntos;
+  }
+  
+  ArrayList<Vec2> pinesMaquina2(){
+    ArrayList<Vec2> puntos = new ArrayList();
+    
+    int vuelta = 1;
+    float y = 70;
+    float x;
+    float inicioMaquina = ((width - ancho) / 2 + 20); 
+    while(y < height / 4){
+      x = inicioMaquina;
+      if (vuelta > 0){
+        x += 31; 
+      }
+      while(x < ((width - ancho) / 2 + ancho - 40)){
+        if(y != 70 || x < (width - ancho) / 2 + ancho - 80){
+          puntos.add(new Vec2(x, y));
+        }
+        x += 62;
+      }
+      y += 45;
+      vuelta *= -1;
+    }
+    
+    puntos.add(new Vec2(width / 2 - 44, y - 15));
+    puntos.add(new Vec2(width / 2 + 6, y - 15));
+    
+    puntos.add(new Vec2((width - ancho) / 2 + 55, height - 345));
+    puntos.add(new Vec2((width - ancho) / 2 + 45, height - 380));
+    puntos.add(new Vec2((width - ancho) / 2 + 35, height - 415));
+    
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 55, height - 345));
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 45, height - 380));
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 35, height - 415));
+    
+    puntos.add(new Vec2((width - ancho) / 2 + 235, height - 275)); 
+    puntos.add(new Vec2((width - ancho) / 2 + 255, height - 280)); 
+    puntos.add(new Vec2((width - ancho) / 2 + 275, height - 285)); 
+    puntos.add(new Vec2((width - ancho) / 2 + 295, height - 290));
+    
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 235, height - 275)); 
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 255, height - 280)); 
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 275, height - 285)); 
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 295, height - 290));
+
     return puntos;
   }
 }
