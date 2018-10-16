@@ -17,11 +17,12 @@ class Boton {
   
   void dibujar()
   {
-    fill(218);
+    fill(#F3E3FA);
     stroke(141);
     rect(x, y, w, h, 10);
     textAlign(CENTER, CENTER);
-    fill(0);
+    textSize(16);
+    fill(#581474);
     text(nombre, x + (w / 2), y + (h / 2));
   }
   

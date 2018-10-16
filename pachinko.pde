@@ -21,13 +21,14 @@ int pantallaActual = 0;
 Boton textoInicio;
 Boton botonMaquinaConf1;
 Boton botonMaquinaConf2;
+PImage jotaro;
 
 void setup(){
   size(1200, 650);
-  
-  textoInicio = new Boton("Seleccione el tipo de maquina", 600, 325, 300, 50);
-  botonMaquinaConf1 = new Boton("Tipo 1", 550, 500, 100, 50);
-  botonMaquinaConf2 = new Boton("Tipo 2", 850, 500, 100, 50);
+  textoInicio = new Boton("Seleccione el tipo de maquina", 820, 200, 300, 50);
+  botonMaquinaConf1 = new Boton("Tipo 1", 800, 400, 100, 50);
+  botonMaquinaConf2 = new Boton("Tipo 2", 1050, 400, 100, 50);
+  jotaro = loadImage("jotaro.png");
 }
 
 void draw(){
@@ -46,6 +47,8 @@ void pantallaInicio(){
   textoInicio.dibujar();
   botonMaquinaConf1.dibujar();
   botonMaquinaConf2.dibujar();
+  
+  image(jotaro, 0, 0);
   
   if (mousePressed)
   { 
