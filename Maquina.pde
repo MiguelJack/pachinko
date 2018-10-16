@@ -2,6 +2,7 @@ class Maquina{
   ArrayList<Vec2> puntos;
   ArrayList<Pin> pines;
   ArrayList<MotorPico> motoresPico;
+  ArrayList<MotorRueda> motoresRueda;
   ArrayList<Base> paredes;
   ArrayList<Atractores> atractores;
   ArrayList<Repeledores> repeledores;
@@ -16,6 +17,7 @@ class Maquina{
     puntos = new ArrayList();
     pines = new ArrayList();
     motoresPico = new ArrayList();
+    motoresRueda = new ArrayList();
     paredes = new ArrayList();
     atractores = new ArrayList();
     repeledores = new ArrayList();
@@ -50,7 +52,8 @@ class Maquina{
     body.createFixture(chainShape, 1);
      
     colocarPines();
-    colocarMotores();
+    colocarMotoresPico();
+    colocarMotoresRueda();
     colocarParedes();
     colocarRepeledoresAtractores();
   }
@@ -72,6 +75,10 @@ class Maquina{
     
     for(MotorPico mp : motoresPico){
       mp.display();
+    }
+    
+    for(MotorRueda mr : motoresRueda){
+      mr.display();
     }
     
     for(Base p : paredes){
@@ -116,7 +123,7 @@ class Maquina{
     
   }
   
-  void colocarMotores(){
+  void colocarMotoresPico(){
     ArrayList<Vec2> vertices = new ArrayList();
     float alto, x;
     switch (tipo){
@@ -147,18 +154,37 @@ class Maquina{
         vertices.add(new Vec2(10, 5));
         vertices.add(new Vec2(-10, 5));
           
-        alto = 350;
+        alto = 355;
         
-        x = (width - ancho) / 2 + 255;
-        
+        x = (width - ancho) / 2 + 255; 
         Base base1m2 = new Base(x, height - alto, 10, 10);
-        Pico pico1m2 = new Pico(x, height - alto + 5, vertices);
+        Pico pico1m2 = new Pico(x, height - alto, vertices);
         motoresPico.add(new MotorPico(-1, base1m2, pico1m2, -55, -35, PI/3));
         
         x = (width - ancho) / 2 + ancho - 30 - 255;
         Base base2m2 = new Base(x, height - alto, 10, 10);
-        Pico pico2m2 = new Pico(x, height - alto + 5, vertices);
+        Pico pico2m2 = new Pico(x, height - alto, vertices);
         motoresPico.add(new MotorPico(-1, base2m2, pico2m2, 35, 55, PI/3));
+      default:
+        break;
+    }
+  }
+  
+  void colocarMotoresRueda(){
+    float x, alto;
+    switch (tipo){
+      case 2:
+        alto = 275;
+        x = (width - ancho) / 2 + 150;
+        Base base1m2 = new Base(x, height - alto, 10, 10);
+        Rueda rueda1m2 = new Rueda(x, height - alto, 40);
+        motoresRueda.add(new MotorRueda(base1m2, rueda1m2));
+        
+        x = (width - ancho) / 2 + ancho - 30 - 150;
+        Base base2m2 = new Base(x, height - alto, 10, 10);
+        Rueda rueda2m2 = new Rueda(x, height - alto, 40);
+        motoresRueda.add(new MotorRueda(base2m2, rueda2m2));
+        break;
       default:
         break;
     }
