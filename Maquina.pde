@@ -174,13 +174,13 @@ class Maquina{
     float x, alto;
     switch (tipo){
       case 2:
-        alto = 275;
-        x = (width - ancho) / 2 + 150;
+        alto = 300;
+        x = (width - ancho) / 2 + 100;
         Base base1m2 = new Base(x, height - alto, 10, 10);
         Rueda rueda1m2 = new Rueda(x, height - alto, 40);
         motoresRueda.add(new MotorRueda(base1m2, rueda1m2));
         
-        x = (width - ancho) / 2 + ancho - 30 - 150;
+        x = (width - ancho) / 2 + ancho - 30 - 100;
         Base base2m2 = new Base(x, height - alto, 10, 10);
         Rueda rueda2m2 = new Rueda(x, height - alto, 40);
         motoresRueda.add(new MotorRueda(base2m2, rueda2m2));
@@ -191,11 +191,26 @@ class Maquina{
   }
   
   void colocarParedes(){
+    float x, alto, espacio;
     switch (tipo){
       case 1:
-        float espacio = ((width - ancho) / 2 + ancho - 30 - 200) - ((width - ancho) / 2 + 200);
+        espacio = ((width - ancho) / 2 + ancho - 30 - 200) - ((width - ancho) / 2 + 200);
         paredes.add(new Base(((width - ancho) / 2 + 200) + espacio / 3, height, 10, 400));
         paredes.add(new Base(((width - ancho) / 2 + 200) + (espacio / 3 * 2), height, 10, 400));
+        break;
+      case 2:
+        alto = 260;
+        espacio = ((width - ancho) / 2 + ancho - 30 - 200) - ((width - ancho) / 2 + 200);
+        
+        x = (width - ancho) / 2 + 200;
+        paredes.add(new Base(x, height - alto / 2, 10, alto));
+        paredes.add(new Base(x + (espacio / 2 - 15) / 2 - 5, height - alto, espacio / 2 - 15, 10));
+        paredes.add(new Base(x + ((espacio / 2 - 15) / 2 - 5) * 2, height - alto - 15, 10, 40));
+        
+        x = (width - ancho) / 2 + ancho - 30 - 200;
+        paredes.add(new Base(x, height - alto / 2, 10, alto));
+        paredes.add(new Base(x - (espacio / 2 - 15) / 2 + 5, height - alto, espacio / 2 - 15, 10));
+        paredes.add(new Base(x - ((espacio / 2 - 15) / 2 - 5) * 2, height - alto - 15, 10, 40));
         break;
       default:
         break;
