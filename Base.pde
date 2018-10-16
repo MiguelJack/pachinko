@@ -2,12 +2,13 @@ class Base{
   Body body;
   float ancho, alto;
   
-  Base(float x, float y, float anchoP, float altoP){
+  Base(float x, float y, float anchoP, float altoP,float angle){
     ancho = anchoP;
     alto = altoP;
     BodyDef bodyDef = new BodyDef();
     bodyDef.position = box2d.coordPixelsToWorld(x, y);
     bodyDef.type = BodyType.STATIC;
+    bodyDef.angle = angle;
     body = box2d.world.createBody(bodyDef);
  
     PolygonShape polygonShape = new PolygonShape();  
@@ -34,5 +35,9 @@ class Base{
     rectMode(CENTER);
     rect(0, 0, ancho, alto);
     popMatrix();
+  }
+  
+  void setAngle(float angle){
+    //body.Angle(angle);
   }
 }

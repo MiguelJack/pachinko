@@ -140,14 +140,14 @@ class Maquina{
         //Creacion Pico 1
         x = (width - ancho) / 2 + 200;
         
-        Base base1m1 = new Base(x, height - alto / 2, 10, alto);
+        Base base1m1 = new Base(x, height - alto / 2, 10, alto, 0);
         Pico pico1m1 = new Pico(x, height - alto + 5, vertices);
         motoresPico.add(new MotorPico(-1, base1m1, pico1m1, -90, -45, PI/2));
         
         //Creacion Pico 2
         x = (width - ancho) / 2 + ancho - 30 - 200;
         
-        Base base2m1 = new Base(x, height - alto / 2, 10, alto);
+        Base base2m1 = new Base(x, height - alto / 2, 10, alto, 0);
         Pico pico2m1 = new Pico(x, height - alto + 5, vertices);
         motoresPico.add(new MotorPico(1, base2m1, pico2m1, 45, 90, PI/2));
         break;
@@ -159,12 +159,12 @@ class Maquina{
         alto = 350;
         
         x = (width - ancho) / 2 + 255; 
-        Base base1m2 = new Base(x, height - alto, 10, 10);
+        Base base1m2 = new Base(x, height - alto, 10, 10, 0);
         Pico pico1m2 = new Pico(x, height - alto, vertices);
         motoresPico.add(new MotorPico(-1, base1m2, pico1m2, -55, -35, PI/3));
         
         x = (width - ancho) / 2 + ancho - 30 - 255;
-        Base base2m2 = new Base(x, height - alto, 10, 10);
+        Base base2m2 = new Base(x, height - alto, 10, 10, 0);
         Pico pico2m2 = new Pico(x, height - alto, vertices);
         motoresPico.add(new MotorPico(-1, base2m2, pico2m2, 35, 55, PI/3));
       default:
@@ -178,23 +178,23 @@ class Maquina{
       case 2:
         alto = 280;
         x = (width - ancho) / 2 + 90;
-        Base base1m2 = new Base(x, height - alto, 10, 10);
+        Base base1m2 = new Base(x, height - alto, 10, 10, 0);
         Rueda rueda1m2 = new Rueda(x, height - alto, 40);
         motoresRueda.add(new MotorRueda(base1m2, rueda1m2));
         
         x = (width - ancho) / 2 + ancho - 30 - 90;
-        Base base2m2 = new Base(x, height - alto, 10, 10);
+        Base base2m2 = new Base(x, height - alto, 10, 10, 0);
         Rueda rueda2m2 = new Rueda(x, height - alto, 40);
         motoresRueda.add(new MotorRueda(base2m2, rueda2m2));
         
         alto = 410;
         x = (width - ancho) / 2 + 180;
-        Base base3m2 = new Base(x, height - alto, 10, 10);
+        Base base3m2 = new Base(x, height - alto, 10, 10, 0);
         Rueda rueda3m2 = new Rueda(x, height - alto, 30);
         motoresRueda.add(new MotorRueda(base3m2, rueda3m2));
         
         x = (width - ancho) / 2 + ancho - 30 - 180;
-        Base base4m2 = new Base(x, height - alto, 10, 10);
+        Base base4m2 = new Base(x, height - alto, 10, 10, 0);
         Rueda rueda4m2 = new Rueda(x, height - alto, 30);
         motoresRueda.add(new MotorRueda(base4m2, rueda4m2));
         break;
@@ -208,22 +208,24 @@ class Maquina{
     switch (tipo){
       case 1:
         espacio = ((width - ancho) / 2 + ancho - 30 - 200) - ((width - ancho) / 2 + 200);
-        paredes.add(new Base(((width - ancho) / 2 + 200) + espacio / 3, height, 10, 400));
-        paredes.add(new Base(((width - ancho) / 2 + 200) + (espacio / 3 * 2), height, 10, 400));
+        paredes.add(new Base(((width - ancho) / 2 + 200) + espacio / 3, height, 10, 400, 0));
+        paredes.add(new Base(((width - ancho) / 2 + 200) + (espacio / 3 * 2), height, 10, 400, 0));
         break;
       case 2:
         alto = 260;
         espacio = ((width - ancho) / 2 + ancho - 30 - 200) - ((width - ancho) / 2 + 200);
         
         x = (width - ancho) / 2 + 200;
-        paredes.add(new Base(x, height - alto / 2, 10, alto));
-        paredes.add(new Base(x + (espacio / 2 - 15) / 2 - 5, height - alto, espacio / 2 - 15, 10));
-        paredes.add(new Base(x + ((espacio / 2 - 15) / 2 - 5) * 2, height - alto - 15, 10, 40));
+        paredes.add(new Base(x, height - alto / 2, 10, alto, 0));
+        paredes.add(new Base(x + (espacio / 2 - 15) / 2 - 5, height - alto - 9, espacio / 2 - 10, 10, radians(15)));
+        //paredes.add(new Base(x + (espacio / 2 - 15) / 2 - 5, height - alto, espacio / 2 - 15, 10, 0));
+        //paredes.add(new Base(x + ((espacio / 2 - 15) / 2 - 5) * 2, height - alto - 15, 10, 40, 0));
         
         x = (width - ancho) / 2 + ancho - 30 - 200;
-        paredes.add(new Base(x, height - alto / 2, 10, alto));
-        paredes.add(new Base(x - (espacio / 2 - 15) / 2 + 5, height - alto, espacio / 2 - 15, 10));
-        paredes.add(new Base(x - ((espacio / 2 - 15) / 2 - 5) * 2, height - alto - 15, 10, 40));
+        paredes.add(new Base(x, height - alto / 2, 10, alto, 0));
+        paredes.add(new Base(x - (espacio / 2 - 15) / 2 + 5, height - alto - 9, espacio / 2 - 10, 10, radians(-15)));
+        //paredes.add(new Base(x - (espacio / 2 - 15) / 2 + 5, height - alto, espacio / 2 - 15, 10));
+        //paredes.add(new Base(x - ((espacio / 2 - 15) / 2 - 5) * 2, height - alto - 15, 10, 40));
         break;
       default:
         break;
@@ -322,7 +324,7 @@ class Maquina{
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 55, height - 345));
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 45, height - 380));
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 35, height - 415));
-    
+    /*
     puntos.add(new Vec2((width - ancho) / 2 + 235, height - 275)); 
     puntos.add(new Vec2((width - ancho) / 2 + 255, height - 280)); 
     puntos.add(new Vec2((width - ancho) / 2 + 275, height - 285)); 
@@ -332,7 +334,7 @@ class Maquina{
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 255, height - 280)); 
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 275, height - 285)); 
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 295, height - 290));
-
+````*/
     return puntos;
   }
 }
