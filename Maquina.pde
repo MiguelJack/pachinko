@@ -218,14 +218,10 @@ class Maquina{
         x = (width - ancho) / 2 + 200;
         paredes.add(new Base(x, height - alto / 2, 10, alto, 0));
         paredes.add(new Base(x + (espacio / 2 - 15) / 2 - 5, height - alto - 9, espacio / 2 - 10, 10, radians(15)));
-        //paredes.add(new Base(x + (espacio / 2 - 15) / 2 - 5, height - alto, espacio / 2 - 15, 10, 0));
-        //paredes.add(new Base(x + ((espacio / 2 - 15) / 2 - 5) * 2, height - alto - 15, 10, 40, 0));
         
         x = (width - ancho) / 2 + ancho - 30 - 200;
         paredes.add(new Base(x, height - alto / 2, 10, alto, 0));
         paredes.add(new Base(x - (espacio / 2 - 15) / 2 + 5, height - alto - 9, espacio / 2 - 10, 10, radians(-15)));
-        //paredes.add(new Base(x - (espacio / 2 - 15) / 2 + 5, height - alto, espacio / 2 - 15, 10));
-        //paredes.add(new Base(x - ((espacio / 2 - 15) / 2 - 5) * 2, height - alto - 15, 10, 40));
         break;
       default:
         break;
@@ -324,17 +320,7 @@ class Maquina{
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 55, height - 345));
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 45, height - 380));
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 35, height - 415));
-    /*
-    puntos.add(new Vec2((width - ancho) / 2 + 235, height - 275)); 
-    puntos.add(new Vec2((width - ancho) / 2 + 255, height - 280)); 
-    puntos.add(new Vec2((width - ancho) / 2 + 275, height - 285)); 
-    puntos.add(new Vec2((width - ancho) / 2 + 295, height - 290));
-    
-    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 235, height - 275)); 
-    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 255, height - 280)); 
-    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 275, height - 285)); 
-    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 295, height - 290));
-````*/
+
     return puntos;
   }
 }
