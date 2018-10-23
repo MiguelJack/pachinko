@@ -6,14 +6,18 @@ class Maquina{
   ArrayList<Base> paredes;
   ArrayList<Atractores> atractores;
   ArrayList<Repeledores> repeledores;
+  pachinko pantalla;
+  ControlP5 cp5;
+  CheckBox checkbox;
   
   float ancho;
   int tipo;
 
-  Maquina(float anchoP, int tipoP){
+  Maquina(float anchoP, int tipoP,pachinko pantalla){
     ancho = anchoP;
     tipo = tipoP;
     
+    cp5 = new ControlP5(pantalla);
     puntos = new ArrayList();
     pines = new ArrayList();
     motoresPico = new ArrayList();
@@ -56,6 +60,7 @@ class Maquina{
     colocarMotoresRueda();
     colocarParedes();
     colocarRepeledoresAtractores();
+    colocarControl();
   }
   
   
@@ -229,6 +234,30 @@ class Maquina{
   }
   
   
+  void colocarControl(){
+    switch(tipo){
+      case 1:
+      checkbox = cp5.addCheckBox("Materiales")
+                    .setPosition(100,500)
+                    .setColorForeground(color(120))
+                    .setColorActive(color(255))
+                    .setColorLabel(color(255))
+                    .setSize(20, 20)
+                    .setItemsPerRow(1)
+                    .setSpacingColumn(30)
+                    .setSpacingRow(10)
+                    .addItem("Material 1", 0)
+                    .addItem("Material 2", 50)
+                    .addItem("Material 3", 100)
+                    .addItem("Material 4", 150)
+                    .addItem("Material 5", 200);
+             break;
+      case 2:
+              break;
+    }
+  }
+  
+  
   void colocarRepeledoresAtractores(){
     switch (tipo){
       case 1:
@@ -322,5 +351,36 @@ class Maquina{
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30 - 35, height - 415));
 
     return puntos;
+  }
+  
+  
+  void poner_material(int i){
+    switch(i){
+      case 0: print("Material 1 true");
+              break;
+      case 1: print("Material 2 true");
+              break;
+      case 2: print("Material 3 true");
+              break;
+      case 3: print("Material 4 true");
+              break; 
+      case 4: print("Material 5 true");
+              break;             
+    }
+  }
+  
+    void quitar_material(int i){
+    switch(i){
+      case 0: print("Material 1 false");
+              break;
+      case 1: print("Material 2 false");
+              break;
+      case 2: print("Material 3 false");
+              break;
+      case 3: print("Material 4 false");
+              break; 
+      case 4: print("Material 5 false");
+              break;             
+    }
   }
 }

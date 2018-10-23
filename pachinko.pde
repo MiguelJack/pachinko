@@ -1,3 +1,5 @@
+import controlP5.*;
+
 import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
 import org.jbox2d.collision.shapes.Shape;
@@ -92,7 +94,7 @@ void configurarPantallaJuego()
       x2 = (width - anchoMaquina) / 2 + 285;  
       break;
   }
-  maquina = new Maquina(anchoMaquina, tipoMaquina);
+  maquina = new Maquina(anchoMaquina, tipoMaquina,this);
 }
 
 void pantallaJuego(){
@@ -102,7 +104,7 @@ void pantallaJuego(){
     float i = random(1,10);
     if(i < 5){
       bolitas.add(new Bolita(0.2, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height)); 
-    }
+    }   
   }
   
   box2d.step();
@@ -131,4 +133,22 @@ void pantallaJuego(){
       }
     }
   }
+}
+
+
+void controlEvent(ControlEvent theEvent) {
+  CheckBox checkbox = maquina.checkbox;
+  print("\n"); 
+  if (theEvent.isFrom(checkbox)) {
+       for (int i=0;i<checkbox.getArrayValue().length;i++) {
+          int n = (int)checkbox.getArrayValue()[i];
+          if(n == 1){
+            maquina.poner_material(i);
+          }
+          if(n == 0){
+            maquina.quitar_material(i);           
+          }
+          print("\n");
+       }
+      }
 }
