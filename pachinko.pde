@@ -18,7 +18,7 @@ float anchoMaquina;
 int tipoMaquina = 0;
 float x1, x2;
 int tipo;
-
+float velocidad = 80;
 
 color c;
 float densidad;
@@ -113,7 +113,7 @@ void pantallaJuego(){
     float i = random(1,10);
     
     if(i < 5){
-      bolitas.add(new Bolita(fuerzaRebote, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height,densidad,c,friccion,metal)); 
+      bolitas.add(new Bolita(fuerzaRebote, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height,densidad,c,friccion,metal, velocidad)); 
     }
   }
   

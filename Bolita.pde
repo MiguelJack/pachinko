@@ -7,7 +7,7 @@ class Bolita{
   float friccion;
   boolean metal;
     
-  Bolita(float fuerzaRevoteP, float radioP, float x, float y,float d,color c,float f,boolean m){
+  Bolita(float fuerzaRevoteP, float radioP, float x, float y,float d,color c,float f,boolean m, float velocidad){
     this.c = c;
     metal = m;
     friccion = f;
@@ -30,7 +30,7 @@ class Bolita{
     
     body.createFixture(fixtureDef);
     
-    body.setLinearVelocity(new Vec2(0, 80));
+    body.setLinearVelocity(new Vec2(0, velocidad));
   }
   
   boolean gano(float x1, float x2){
