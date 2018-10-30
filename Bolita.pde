@@ -2,8 +2,16 @@ class Bolita{
   Body body;
   float radio;
   float fuerzaRevote;
+  float densidad;
+  color c;
+  float friccion;
+  boolean metal;
     
-  Bolita(float fuerzaRevoteP, float radioP, float x, float y){
+  Bolita(float fuerzaRevoteP, float radioP, float x, float y,float d,color c,float f,boolean m){
+    this.c = c;
+    metal = m;
+    friccion = f;
+    densidad = d;
     fuerzaRevote = fuerzaRevoteP;
     radio = radioP;
     BodyDef bodyDef = new BodyDef();
@@ -16,8 +24,9 @@ class Bolita{
     
     FixtureDef fixtureDef = new FixtureDef();
     fixtureDef.shape = circleShape;
-    fixtureDef.density = 1;
+    fixtureDef.density = densidad;
     fixtureDef.restitution = fuerzaRevote;
+    fixtureDef.friction = friccion;
     
     body.createFixture(fixtureDef);
     
@@ -63,7 +72,7 @@ class Bolita{
     Vec2 posicion = box2d.getBodyPixelCoord(body);
     pushMatrix();
     translate(posicion.x, posicion.y);
-    fill(#646464);
+    fill(c);
     stroke(#B2B2B2);
     strokeWeight(2);
     ellipse(0, 0, radio * 2, radio * 2);
