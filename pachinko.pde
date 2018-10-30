@@ -18,7 +18,7 @@ float anchoMaquina;
 int tipoMaquina = 0;
 float x1, x2;
 int tipo;
-float velocidad = 80;
+int velocidad = 80;
 
 color c;
 float densidad;
@@ -150,9 +150,18 @@ void initControls(){
   cp5 = new ControlP5(this);
   cp5.addSlider("setGravedad")
     .setPosition(10, 10)
-    .setSize(300, 20)
+    .setSize(200, 20)
     .setRange(1, 3)
-    .setCaptionLabel("Gravedad")
+    .setCaptionLabel("Tipo de bolita")
+    .setColorBackground(color(255))
+    .setColorActive(color(255, 0, 0))
+    .setValue(tipo)
+    .setColorCaptionLabel(color(255, 255, 255));
+  cp5.addSlider("setVelocidad")
+    .setPosition(10, 40)
+    .setSize(200, 20)
+    .setRange(80, 180)
+    .setCaptionLabel("Velocidad")
     .setColorBackground(color(255))
     .setColorActive(color(255, 0, 0))
     .setValue(tipo)
@@ -182,4 +191,7 @@ void setGravedad(int value){
     c = color(255,255,0);
     metal = true;
   }
+}
+void setVelocidad(int value){
+  velocidad = value;
 }
