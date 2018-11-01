@@ -31,7 +31,16 @@ int pantallaActual = 0;
 Boton textoInicio;
 Boton botonMaquinaConf1;
 Boton botonMaquinaConf2;
+
 PImage jotaro;
+PImage glasses;
+
+Slider sliderGravedad;
+Slider sliderVelocidad;
+
+
+
+
 
 void setup(){
   size(1200, 650);
@@ -39,6 +48,7 @@ void setup(){
   botonMaquinaConf1 = new Boton("Tipo 1", 800, 400, 100, 50);
   botonMaquinaConf2 = new Boton("Tipo 2", 1050, 400, 100, 50);
   jotaro = loadImage("jotaro.png");
+  
   initControls();
 }
 
@@ -47,10 +57,23 @@ void draw(){
   if (pantallaActual == 0)
   {
     pantallaInicio();
-  }else{
-    eliminarElementsPantallaInicio();
+  }else if(pantallaActual == 1){
     pantallaJuego();
+  }else{
+    pantallaVictoria();
   }
+}
+
+void pantallaVictoria()
+{
+  sliderGravedad.setVisible(false);
+  sliderVelocidad.setVisible(false);
+  image(jotaro, 0, 0);
+   PFont f = createFont("Georgia", 64);
+  String victoria = "Has ganado!";
+  textFont(f);
+  textSize(64);
+  text(victoria, 800, 200);
 }
 
 void pantallaInicio(){
@@ -58,6 +81,9 @@ void pantallaInicio(){
   textoInicio.dibujar();
   botonMaquinaConf1.dibujar();
   botonMaquinaConf2.dibujar();
+  
+  sliderGravedad.hide();
+  sliderVelocidad.hide();
   
   image(jotaro, 0, 0);
   
@@ -67,23 +93,28 @@ void pantallaInicio(){
     {
       tipoMaquina = 1;
       pantallaActual = 1;
+      eliminarElementosPantallaInicio();
       configurarPantallaJuego();
-    }
-    
-    if (botonMaquinaConf2.mouseEncima())
+    }else if (botonMaquinaConf2.mouseEncima())
     {
       tipoMaquina = 2;
       pantallaActual = 1;
+      eliminarElementosPantallaInicio();
       configurarPantallaJuego();
     }
   }
 }
 
-void eliminarElementsPantallaInicio()
+void eliminarElementosPantallaInicio()
 {
   textoInicio = null;
   botonMaquinaConf1 = null;
   botonMaquinaConf2 = null;
+}
+
+void eliminarComponentesMaquina()
+{
+  maquina = null;
 }
 
 void configurarPantallaJuego()
@@ -108,6 +139,8 @@ void configurarPantallaJuego()
 
 void pantallaJuego(){
   background(0);
+  sliderGravedad.show();
+  sliderVelocidad.show();
   
   if(mousePressed&& (mouseButton == RIGHT)){
     float i = random(1,10);
@@ -138,7 +171,9 @@ void pantallaJuego(){
   while(pennywise.hasNext()){
     Bolita b = pennywise.next();
     if(b.gano(x1, x2)){
-      stop(); 
+      pantallaActual = 2;
+      eliminarComponentesMaquina();
+      //stop(); 
     }else{
       if(b.salio(anchoMaquina)){
         pennywise.remove();
@@ -146,9 +181,10 @@ void pantallaJuego(){
     }
   }
 }
+
 void initControls(){
   cp5 = new ControlP5(this);
-  cp5.addSlider("setGravedad")
+  sliderGravedad = cp5.addSlider("setGravedad")
     .setPosition(10, 10)
     .setSize(200, 20)
     .setRange(1, 3)
@@ -157,7 +193,8 @@ void initControls(){
     .setColorActive(color(255, 0, 0))
     .setValue(tipo)
     .setColorCaptionLabel(color(255, 255, 255));
-  cp5.addSlider("setVelocidad")
+    
+  sliderVelocidad = cp5.addSlider("setVelocidad")
     .setPosition(10, 40)
     .setSize(200, 20)
     .setRange(80, 180)
