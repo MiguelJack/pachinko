@@ -19,6 +19,7 @@ int tipoMaquina = 0;
 float x1, x2;
 int tipo;
 int velocidad = 80;
+int numeroBolitas = 100;
 
 color c;
 float densidad;
@@ -141,12 +142,15 @@ void pantallaJuego(){
   background(0);
   sliderGravedad.show();
   sliderVelocidad.show();
+  fill(255);
+  text("Bolitas restantes:" + numeroBolitas,100,height-50);
   
   if(mousePressed&& (mouseButton == RIGHT)){
     float i = random(1,10);
     
     if(i < 5){
       bolitas.add(new Bolita(fuerzaRebote, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height,densidad,c,friccion,metal, velocidad)); 
+      numeroBolitas--;
     }
   }
   
