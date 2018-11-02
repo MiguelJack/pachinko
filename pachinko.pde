@@ -147,10 +147,11 @@ void pantallaJuego(){
   
   if(mousePressed&& (mouseButton == RIGHT)){
     float i = random(1,10);
-    
-    if(i < 5){
-      bolitas.add(new Bolita(fuerzaRebote, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height,densidad,c,friccion,metal, velocidad)); 
-      numeroBolitas--;
+    if(numeroBolitas > 0){
+      if(i < 5){
+        bolitas.add(new Bolita(fuerzaRebote, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height,densidad,c,friccion,metal, velocidad)); 
+        numeroBolitas--;
+      }
     }
   }
   
