@@ -19,7 +19,7 @@ int tipoMaquina = 0;
 float x1, x2;
 int tipo;
 int velocidad = 80;
-int numeroBolitas = 100;
+int numeroBolitas = 50;
 
 color c;
 float densidad;
@@ -29,9 +29,10 @@ boolean metal;
 
 int pantallaActual = 0;
 
-Boton textoInicio;
+
 Boton botonMaquinaConf1;
 Boton botonMaquinaConf2;
+Boton textoInicio;
 
 PImage jotaro;
 PImage glasses;
@@ -44,12 +45,7 @@ Slider sliderVelocidad;
 
 
 void setup(){
-  size(1200, 650);
-  textoInicio = new Boton("Seleccione el tipo de maquina", 820, 200, 300, 50);
-  botonMaquinaConf1 = new Boton("Tipo 1", 800, 400, 100, 50);
-  botonMaquinaConf2 = new Boton("Tipo 2", 1050, 400, 100, 50);
-  jotaro = loadImage("jotaro.png");
-  
+  size(1200, 650);  
   initControls();
 }
 
@@ -79,6 +75,10 @@ void pantallaVictoria()
 
 void pantallaInicio(){
   background(0);
+  textoInicio = new Boton("Seleccione el tipo de maquina", 820, 200, 300, 50);
+  botonMaquinaConf1 = new Boton("Tipo 1", 800, 400, 100, 50);
+  botonMaquinaConf2 = new Boton("Tipo 2", 1050, 400, 100, 50);
+  jotaro = loadImage("jotaro.png");
   textoInicio.dibujar();
   botonMaquinaConf1.dibujar();
   botonMaquinaConf2.dibujar();
@@ -140,18 +140,27 @@ void configurarPantallaJuego()
 
 void pantallaJuego(){
   background(0);
+  Boton lanzar = new Boton("Lanzar",1050,500,100,100);
+  lanzar.dibujar();
+  Boton regresar = new Boton("Regresar",1050,50,100,50);
+  regresar.dibujar();
   sliderGravedad.show();
   sliderVelocidad.show();
   fill(255);
   text("Bolitas restantes:" + numeroBolitas,100,height-50);
   
-  if(mousePressed&& (mouseButton == RIGHT)){
-    float i = random(1,10);
-    if(numeroBolitas > 0){
-      if(i < 5){
+  if(mousePressed){
+    if(lanzar.mouseEncima()){
+       float i = random(1,10);
+       if(numeroBolitas > 0){
+         if(i < 5){
         bolitas.add(new Bolita(fuerzaRebote, radioBolitas, (width - anchoMaquina) / 2 + anchoMaquina - radioBolitas - 5, height,densidad,c,friccion,metal, velocidad)); 
         numeroBolitas--;
       }
+    }
+    }
+    else if(regresar.mouseEncima()){
+      pantallaActual = 0;
     }
   }
   

@@ -17,13 +17,23 @@ class Boton {
   
   void dibujar()
   {
-    fill(#F3E3FA);
-    stroke(141);
-    rect(x, y, w, h, 10);
-    textAlign(CENTER, CENTER);
-    textSize(16);
-    fill(#581474);
-    text(nombre, x + (w / 2), y + (h / 2));
+    if(mouseEncima()){
+      fill(#E7B4FF); //Con presionar
+      stroke(141);
+      rect(x, y, w, h, 10);
+      textAlign(CENTER, CENTER);
+      textSize(16);
+      fill(#581474); 
+      text(nombre, x + (w / 2), y + (h / 2));
+    }else{
+      fill(#F5E0FF); //Sin presionar
+      stroke(141);
+      rect(x, y, w, h, 10);
+      textAlign(CENTER, CENTER);
+      textSize(16);
+      fill(#581474); 
+      text(nombre, x + (w / 2), y + (h / 2));
+    }
   }
   
   boolean mouseEncima()
