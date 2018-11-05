@@ -106,6 +106,8 @@ class Maquina{
       case 1:
         rect((width - ancho) / 2 + 205, height - 20, 80, 20);
         break;
+      case 2:
+        rect((width - ancho) / 2 + 273, height - 20, 57, 20);
       default:
         break;
     }
@@ -222,11 +224,29 @@ class Maquina{
         
         x = (width - ancho) / 2 + 200;
         paredes.add(new Base(x, height - alto / 2, 10, alto, 0));
-        paredes.add(new Base(x + (espacio / 2 - 15) / 2 - 5, height - alto - 9, espacio / 2 - 10, 10, radians(15)));
+        paredes.add(new Base(x + espacio / 4, height - alto / 13, 10, alto, 0));
+        paredes.add(new Base(x + (espacio / 2 - 15) / 2 - 5, height - alto - 14, espacio / 2 - 10, 10, radians(20)));
+        
+        float largo = 52;
+        float medio = 60;
+        paredes.add(new Base(x + largo / 2, height - alto + 50, largo, 10, radians(-20)));
+        paredes.add(new Base(x + largo + medio, height - alto + 50, largo, 10, radians(20)));
+        
+        paredes.add(new Base(x + medio - largo / 5 + 4, height - alto + 120, (largo / 3) * 2 - 2, 10, radians(20)));
+        paredes.add(new Base(x + medio + largo / 2 - 2, height - alto + 120, (largo / 3) * 2 - 2, 10, radians(-20)));
         
         x = (width - ancho) / 2 + ancho - 30 - 200;
         paredes.add(new Base(x, height - alto / 2, 10, alto, 0));
-        paredes.add(new Base(x - (espacio / 2 - 15) / 2 + 5, height - alto - 9, espacio / 2 - 10, 10, radians(-15)));
+        paredes.add(new Base(x - espacio / 2, height - alto / 3, 10, alto, 0));
+        paredes.add(new Base(x - espacio / 4, height - alto / 13, 10, alto, 0));
+        paredes.add(new Base(x - (espacio / 2 - 15) / 2 + 5, height - alto - 14, espacio / 2 - 10, 10, radians(-20)));
+        
+        paredes.add(new Base(x - largo - medio, height - alto + 50, largo, 10, radians(-20)));
+        paredes.add(new Base(x - largo / 2, height - alto + 50, largo, 10, radians(20)));
+        
+        paredes.add(new Base(x - medio - largo / 2 + 2, height - alto + 120, (largo / 3) * 2 - 2, 10, radians(20)));
+        paredes.add(new Base(x - medio + largo / 5 - 4, height - alto + 120, (largo / 3) * 2 - 2, 10, radians(-20)));
+
         break;
       default:
         break;

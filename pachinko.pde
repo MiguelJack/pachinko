@@ -19,7 +19,7 @@ int tipoMaquina = 0;
 float x1, x2;
 int tipo;
 int velocidad = 80;
-int numeroBolitas = 50;
+int numeroBolitas = 500;
 
 color c;
 float densidad;
@@ -131,8 +131,8 @@ void configurarPantallaJuego()
       break;
     case 2:
       anchoMaquina = 700;
-      x1 = (width - anchoMaquina) / 2 + 205;
-      x2 = (width - anchoMaquina) / 2 + 285;  
+      x1 = (width - anchoMaquina) / 2 + 273;
+      x2 = (width - anchoMaquina) / 2 + 330;  
       break;
   }
   maquina = new Maquina(anchoMaquina, tipoMaquina);
