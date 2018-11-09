@@ -227,8 +227,6 @@ void pantallaJuego(){
     text("Puntaje: " + puntaje,100, height - 100);
   }
   
-  text("Bolitas fuera: " + numeroBolitasOut,100,height-150);
-  
   if(mousePressed){
     if(lanzar.mouseEncima()){
        float i = random(1,10);
