@@ -31,19 +31,21 @@ class Maquina{
     Body body = box2d.createBody(bodyDef);
     
     puntos.add(new Vec2((width - ancho) / 2 + 100, 0));
+    puntos.add(new Vec2((width - ancho) / 2 + 30 , 50));
     puntos.add(new Vec2((width - ancho) / 2, 120));
     puntos.add(new Vec2((width - ancho) / 2, height));
     
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, height));
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, 135));
     
-    puntos.add(new Vec2((width - ancho) / 2 + ancho - 100, 50));
-    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, 135));
+    //puntos.add(new Vec2((width - ancho) / 2 + ancho - 90, 70));
+    //puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, 135));
     
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, height));
     puntos.add(new Vec2((width - ancho) / 2 + ancho, height));
     
     puntos.add(new Vec2((width - ancho) / 2 + ancho, 120));
+    puntos.add(new Vec2((width - ancho) / 2 + ancho - 30, 50));
     puntos.add(new Vec2((width - ancho) / 2 + ancho - 100, 0));
     puntos.add(new Vec2((width - ancho) / 2 + 100, 0));
     
@@ -301,15 +303,15 @@ class Maquina{
     int vuelta = 1;
     float y = 70;
     float x;
-    float inicioMaquina = ((width - ancho) / 2 + 20); 
+    float inicioMaquina = ((width - ancho) / 2 + 32); 
     while(y < height / 2){
       x = inicioMaquina;
       if (vuelta > 0){
-        x += 45; 
+        x += 50; 
       }
       while(x < ((width - ancho) / 2 + ancho - 40)){
         puntos.add(new Vec2(x, y));
-        x += 90;
+        x += 100;
       }
       y += 54;
       vuelta *= -1;
@@ -343,23 +345,23 @@ class Maquina{
     int vuelta = 1;
     float y = 70;
     float x;
-    float inicioMaquina = ((width - ancho) / 2 + 20); 
+    float inicioMaquina = ((width - ancho) / 2 + 30); 
     while(y < height / 4){
       x = inicioMaquina;
       if (vuelta > 0){
-        x += 31; 
+        x += 30; 
       }
       while(x < ((width - ancho) / 2 + ancho - 40)){
         if(y != 70 || x < (width - ancho) / 2 + ancho - 80){
           puntos.add(new Vec2(x, y));
         }
-        x += 62;
+        x += 60;
       }
       y += 45;
       vuelta *= -1;
     }
     
-    puntos.add(new Vec2(width / 2 - 44, y - 15));
+    puntos.add(new Vec2(width / 2 - 42, y - 15));
     puntos.add(new Vec2(width / 2 + 6, y - 15));
     
     puntos.add(new Vec2((width - ancho) / 2 + 55, height - 345));

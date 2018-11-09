@@ -16,10 +16,14 @@ ControlP5 cp5;
 float radioBolitas = 8;
 float anchoMaquina;
 int tipoMaquina = 0;
+int modoJuego = 1;
 float x1, x2;
 int tipo;
 int velocidad = 80;
-int numeroBolitas = 500;
+int numeroBolitas;
+int bolitasInicial = 500;
+int puntaje = 0;
+int numeroBolitasOut;
 
 color c;
 float densidad;
@@ -29,10 +33,12 @@ boolean metal;
 
 int pantallaActual = 0;
 
-
 Boton botonMaquinaConf1;
 Boton botonMaquinaConf2;
 Boton textoInicio;
+Boton botonModo1;
+Boton botonModo2;
+Boton textoModo;
 
 PImage jotaro;
 PImage glasses;
@@ -40,24 +46,35 @@ PImage glasses;
 Slider sliderGravedad;
 Slider sliderVelocidad;
 
-
-
-
-
 void setup(){
   size(1200, 650);  
   initControls();
+  numeroBolitasOut = bolitasInicial;
+  numeroBolitas = bolitasInicial;
 }
 
 void draw(){
   background(0);
-  if (pantallaActual == 0)
-  {
+  if (pantallaActual == 0){
     pantallaInicio();
   }else if(pantallaActual == 1){
+    pantallaModo();
+  }else if(pantallaActual == 2){
     pantallaJuego();
-  }else{
+  }else if(pantallaActual == 3){
     pantallaVictoria();
+  }else if(pantallaActual == 4){
+    pantallaPerder();
+  }else if(pantallaActual == 5){
+    pantallaPuntaje();
+  }
+  
+  if(numeroBolitasOut == 0){
+     if(modoJuego == 1){
+       pantallaActual = 4;
+     }else if(modoJuego == 2){
+       pantallaActual = 5; 
+     }
   }
 }
 
@@ -66,11 +83,35 @@ void pantallaVictoria()
   sliderGravedad.setVisible(false);
   sliderVelocidad.setVisible(false);
   image(jotaro, 0, 0);
-   PFont f = createFont("Georgia", 64);
+  PFont f = createFont("Georgia", 64);
   String victoria = "Has ganado!";
   textFont(f);
   textSize(64);
   text(victoria, 800, 200);
+}
+
+void pantallaPerder()
+{
+  sliderGravedad.setVisible(false);
+  sliderVelocidad.setVisible(false);
+  image(jotaro, 0, 0);
+  PFont f = createFont("Georgia", 64);
+  String perder = "Has Perdido!";
+  textFont(f);
+  textSize(64);
+  text(perder, 800, 200);
+}
+
+void pantallaPuntaje()
+{
+  sliderGravedad.setVisible(false);
+  sliderVelocidad.setVisible(false);
+  image(jotaro, 0, 0);
+  PFont f = createFont("Georgia", 64);
+  String spuntaje = "Tu puntaje: "+ puntaje;
+  textFont(f);
+  textSize(64);
+  text(spuntaje, 800, 200);
 }
 
 void pantallaInicio(){
@@ -88,19 +129,46 @@ void pantallaInicio(){
   
   image(jotaro, 0, 0);
   
-  if (mousePressed)
-  { 
-    if (botonMaquinaConf1.mouseEncima())
-    {
+  if (mousePressed){ 
+    if (botonMaquinaConf1.mouseEncima()){
       tipoMaquina = 1;
       pantallaActual = 1;
       eliminarElementosPantallaInicio();
-      configurarPantallaJuego();
-    }else if (botonMaquinaConf2.mouseEncima())
-    {
+      //configurarPantallaJuego();
+    }else if (botonMaquinaConf2.mouseEncima()){
       tipoMaquina = 2;
       pantallaActual = 1;
       eliminarElementosPantallaInicio();
+      //configurarPantallaJuego();
+    }
+  }
+}
+
+void pantallaModo(){
+  background(0);
+  textoModo = new Boton("Seleccione el modo de juego", 820, 200, 300, 50);
+  botonModo1 = new Boton("Modo 1", 800, 400, 100, 50);
+  botonModo2 = new Boton("Modo 2", 1050, 400, 100, 50);
+  jotaro = loadImage("jotaro.png");
+  textoModo.dibujar();
+  botonModo1.dibujar();
+  botonModo2.dibujar();
+  
+  sliderGravedad.hide();
+  sliderVelocidad.hide();
+  
+  image(jotaro, 0, 0);
+  
+  if (mousePressed){ 
+    if (botonModo1.mouseEncima()){
+      modoJuego = 1;
+      pantallaActual = 2;
+      eliminarElementosPantallaModo();
+      configurarPantallaJuego();
+    }else if (botonModo2.mouseEncima()){
+      modoJuego = 2;
+      pantallaActual = 2;
+      eliminarElementosPantallaModo();
       configurarPantallaJuego();
     }
   }
@@ -111,6 +179,13 @@ void eliminarElementosPantallaInicio()
   textoInicio = null;
   botonMaquinaConf1 = null;
   botonMaquinaConf2 = null;
+}
+
+void eliminarElementosPantallaModo()
+{
+  textoModo = null;
+  botonModo1 = null;
+  botonModo2 = null;
 }
 
 void eliminarComponentesMaquina()
@@ -147,7 +222,12 @@ void pantallaJuego(){
   sliderGravedad.show();
   sliderVelocidad.show();
   fill(255);
-  text("Bolitas restantes:" + numeroBolitas,100,height-50);
+  text("Bolitas restantes: " + numeroBolitas,100,height-50);
+  if(modoJuego == 2){
+    text("Puntaje: " + puntaje,100, height - 100);
+  }
+  
+  text("Bolitas fuera: " + numeroBolitasOut,100,height-150);
   
   if(mousePressed){
     if(lanzar.mouseEncima()){
@@ -161,6 +241,9 @@ void pantallaJuego(){
     }
     else if(regresar.mouseEncima()){
       pantallaActual = 0;
+      numeroBolitas = bolitasInicial;
+      numeroBolitasOut = bolitasInicial;
+      puntaje = 0;
     }
   }
   
@@ -184,14 +267,19 @@ void pantallaJuego(){
   ListIterator<Bolita> pennywise = bolitas.listIterator();
   while(pennywise.hasNext()){
     Bolita b = pennywise.next();
-    if(b.gano(x1, x2)){
-      pantallaActual = 2;
-      eliminarComponentesMaquina();
-      //stop(); 
-    }else{
-      if(b.salio(anchoMaquina)){
-        pennywise.remove();
+    if(b.salio(anchoMaquina)){
+      if(b.gano(x1, x2)){
+        if(modoJuego == 1){
+          pantallaActual = 3;
+          eliminarComponentesMaquina();
+        }else{
+          if(modoJuego == 2){
+            puntaje += 100;
+          }
+        }
       }
+      pennywise.remove();
+      numeroBolitasOut -= 1;
     }
   }
 }
