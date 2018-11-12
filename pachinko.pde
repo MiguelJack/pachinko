@@ -8,7 +8,9 @@ import java.util.ListIterator;
 import org.jbox2d.dynamics.joints.*;
 Box2DProcessing box2d;
 import controlP5.*;
-
+import processing.sound.*;
+SoundFile file;
+String audioName;
 
 ArrayList<Bolita> bolitas;
 Maquina maquina;
@@ -51,6 +53,35 @@ void setup(){
   initControls();
   numeroBolitasOut = bolitasInicial;
   numeroBolitas = bolitasInicial;
+  
+  music();
+}
+
+void music(){
+  int r = (int)random(0, 5);
+  switch(r){
+     case 0:
+       audioName = "data\\Song 1.mp3";
+       break;
+     case 1:
+       audioName = "data\\Song 2.mp3";
+       break;
+     case 2:
+       audioName = "data\\Song 3.mp3";
+       break;
+     case 3:
+       audioName = "data\\Song 4.mp3";
+       break;
+     case 4:
+       audioName = "data\\Song 5.mp3";
+       break;
+     default:
+       break;
+  }
+  
+  String path = sketchPath(audioName);
+  file = new SoundFile(this, path);
+  file.play();
 }
 
 void draw(){
