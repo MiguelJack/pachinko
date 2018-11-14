@@ -61,26 +61,25 @@ void music(){
   int r = (int)random(0, 5);
   switch(r){
      case 0:
-       audioName = "data\\Song 1.mp3";
+       audioName = "Song 1.mp3";
        break;
      case 1:
-       audioName = "data\\Song 2.mp3";
+       audioName = "Song 2.mp3";
        break;
      case 2:
-       audioName = "data\\Song 3.mp3";
+       audioName = "Song 3.mp3";
        break;
      case 3:
-       audioName = "data\\Song 4.mp3";
+       audioName = "Song 4.mp3";
        break;
      case 4:
-       audioName = "data\\Song 5.mp3";
+       audioName = "Song 5.mp3";
        break;
      default:
        break;
   }
   
-  String path = sketchPath(audioName);
-  file = new SoundFile(this, path);
+  file = new SoundFile(this, audioName);
   file.play();
 }
 
