@@ -55,7 +55,7 @@ class Bolita{
     Vec2 bodyVec = body.getWorldCenter();
     worldTarget.subLocal(bodyVec);
     worldTarget.normalize();
-    worldTarget.mulLocal((float) 8);
+    worldTarget.mulLocal((float) 100);
     body.applyForce(worldTarget, bodyVec);
   }
 

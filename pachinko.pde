@@ -282,13 +282,14 @@ void pantallaJuego(){
   for (Bolita b : bolitas){
     b.display();
     //Atraccion y repeledores con cada bolita
+    for(Repeledores r : maquina.repeledores){
+        b.repel(r.x,r.y);
+     }
    if(b.metal){
      for(Atractores a : maquina.atractores){
         b.attract(a.x,a.y);
      } 
-     for(Repeledores r : maquina.repeledores){
-        b.repel(r.x,r.y);
-     }
+     
    }
   }
   
