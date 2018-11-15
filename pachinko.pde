@@ -352,7 +352,7 @@ void setGravedad(int value){
     metal = false;
   }
   if (value ==3){
-    densidad = 0.5;
+    densidad = 111;
     fuerzaRebote = 0.01;
     friccion = 0.5;
     c = color(255,255,0);
